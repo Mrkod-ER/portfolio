@@ -8,6 +8,7 @@ import { GoalsModule } from '@/components/modules/GoalsModule'
 import { CodingProfileModule } from '@/components/modules/CodingProfileModule'
 import { ProjectsModule } from '@/components/modules/ProjectsModule'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { Sidebar } from '@/components/Sidebar'
 import { getEnabledModules } from '@/config/modules'
 import {
   codeforces,
@@ -33,38 +34,42 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-background transition-colors duration-300">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          <div>
-            <h1 className="text-2xl font-bold text-foreground">Developer Portfolio</h1>
-            <p className="text-xs text-muted-foreground sm:text-sm">
-              Modular. Scalable. Elegant.
+    <div className="flex min-h-screen flex-col bg-background transition-colors duration-300 md:flex-row">
+      <Sidebar />
+
+      <main className="flex flex-1 flex-col md:ml-64">
+        {/* Header */}
+        <header className="sticky top-0 z-40 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-colors duration-300">
+          <div className="flex items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+            <div className="flex-1">
+              <h1 className="text-2xl font-bold text-foreground">Developer Portfolio</h1>
+              <p className="text-xs text-muted-foreground sm:text-sm">
+                Modular. Scalable. Elegant.
+              </p>
+            </div>
+            <ThemeToggle />
+          </div>
+        </header>
+
+        {/* Content */}
+        <div className="flex-1 px-4 py-8 sm:px-6 lg:px-8">
+          <BentoGrid>
+            {enabledModules.map((module) => moduleComponents[module.id])}
+          </BentoGrid>
+        </div>
+
+        {/* Footer */}
+        <footer className="border-t border-border/40 bg-card py-8 text-center">
+          <div className="px-4 sm:px-6 lg:px-8">
+            <p className="text-sm text-muted-foreground">
+              Built with Next.js, Tailwind CSS & shadcn/ui
+            </p>
+            <p className="text-xs text-muted-foreground/60 mt-2">
+              © 2026. All rights reserved.
             </p>
           </div>
-          <ThemeToggle />
-        </div>
-      </header>
-
-      {/* Content */}
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <BentoGrid>
-          {enabledModules.map((module) => moduleComponents[module.id])}
-        </BentoGrid>
-      </div>
-
-      {/* Footer */}
-      <footer className="border-t border-border/40 bg-card py-8 text-center">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="text-sm text-muted-foreground">
-            Built with Next.js, Tailwind CSS & shadcn/ui
-          </p>
-          <p className="text-xs text-muted-foreground/60 mt-2">
-            © 2026. All rights reserved.
-          </p>
-        </div>
-      </footer>
-    </main>
+        </footer>
+      </main>
+    </div>
   )
 }

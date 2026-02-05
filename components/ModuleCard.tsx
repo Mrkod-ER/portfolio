@@ -37,7 +37,7 @@ export function ModuleCard({
   return (
     <div
       className={cn(
-        'group relative overflow-hidden rounded-lg border border-border bg-card transition-all duration-300 hover:border-primary/50 hover:shadow-lg',
+        'group relative overflow-hidden rounded-lg border border-border bg-card transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:scale-[1.02]',
         sizeClasses[size],
         isExpanded && 'md:col-span-3 lg:col-span-3 row-span-auto',
         className,

@@ -100,6 +100,46 @@ body {
   .smooth-transition {
     @apply transition-all duration-300;
   }
+
+  /* Page transition animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInFromLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Apply fade-in animation to page content */
+  main {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  /* Smooth scaling effect for interactive elements */
+  button,
+  [role="button"] {
+    @apply transition-all duration-200;
+  }
+
+  /* Card hover effects */
+  [class*="card"],
+  [class*="module"] {
+    @apply transition-all duration-300;
+  }
 }
 
 @supports (backdrop-filter: blur(1px)) {

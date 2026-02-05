@@ -43,8 +43,8 @@ export function LikeButton({ id, className }: LikeButtonProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={cn(
-        'group flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-all duration-200',
-        'border border-border hover:border-primary/50',
+        'group flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-all duration-300',
+        'border border-border hover:border-primary/50 hover:scale-110 active:scale-95',
         isLiked ? 'bg-red-50 dark:bg-red-950' : 'bg-muted hover:bg-muted/80',
         className,
       )}
