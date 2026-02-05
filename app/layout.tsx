@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 
 import './globals.css'
+import { ThemeProvider } from "@/components/theme-provider"
 
 const _geist = Geist({ subsets: ['latin'] })
 const _geistMono = Geist_Mono({ subsets: ['latin'] })
@@ -13,12 +14,6 @@ export const metadata: Metadata = {
   generator: 'v0.app',
 }
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', content: 'white' },
-    { media: '(prefers-color-scheme: dark)', content: 'black' },
-  ],
-}
 
 export default function RootLayout({
   children,
@@ -27,7 +22,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   )
 }
