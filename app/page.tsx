@@ -37,7 +37,7 @@ export default function Home() {
     <div className="flex min-h-screen flex-col bg-background transition-colors duration-300 md:flex-row">
       <Sidebar />
 
-      <main className="flex flex-1 flex-col md:ml-64">
+      <main className="flex flex-1 flex-col md:overflow-hidden" style={{ marginLeft: 0 }}>
         {/* Header */}
         <header className="sticky top-0 z-40 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-colors duration-300">
           <div className="flex items-center justify-between px-4 py-4 sm:px-6 lg:px-8">

@@ -19,19 +19,22 @@ export function Sidebar({ className }: SidebarProps) {
 
   const navItems = [
     {
+      id: 'home',
       href: '/',
       label: 'Home',
       icon: Home,
       badge: null,
     },
     {
-      href: '/',
+      id: 'projects',
+      href: '/#projects',
       label: 'Projects',
       icon: FolderOpen,
       badge: null,
     },
     {
-      href: '/',
+      id: 'featured',
+      href: '/#featured',
       label: 'Featured',
       icon: Star,
       badge: 'Pro',
@@ -46,7 +49,7 @@ export function Sidebar({ className }: SidebarProps) {
   const DesktopSidebar = () => (
     <aside
       className={cn(
-        'hidden md:fixed md:left-0 md:top-0 md:flex md:h-screen md:flex-col md:border-r md:border-border md:bg-card md:transition-all md:duration-300',
+        'hidden md:flex md:flex-col md:border-r md:border-border md:bg-card md:transition-all md:duration-300',
         isCollapsed ? 'md:w-20' : 'md:w-64',
         className
       )}
@@ -93,7 +96,7 @@ export function Sidebar({ className }: SidebarProps) {
           const Icon = item.icon
           return (
             <Link
-              key={item.href}
+              key={item.id}
               href={item.href}
               className={cn(
                 'group relative flex items-center gap-3 rounded-lg px-3 py-2.5 transition-all duration-200',
@@ -185,7 +188,7 @@ export function Sidebar({ className }: SidebarProps) {
             const Icon = item.icon
             return (
               <Link
-                key={item.href}
+                key={item.id}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
                 className={cn(
