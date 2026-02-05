@@ -1,5 +1,4 @@
-'use client';
-
+'use client'; 
 import Link from 'next/link'
 import { ModuleCard } from '@/components/ModuleCard'
 import { aboutMe } from '@/data/profiles'

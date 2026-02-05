@@ -1,45 +1,31 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { Moon, Sun } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { useTheme } from "next-themes"
+import { useEffect, useState } from "react"
+import { Moon, Sun } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false)
-  const [isMounted, setIsMounted] = useState(false)
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setIsMounted(true)
-    const isDarkMode =
-      document.documentElement.classList.contains('dark') ||
-      localStorage.getItem('theme') === 'dark'
-    setIsDark(isDarkMode)
+    setMounted(true)
   }, [])
 
-  const toggleTheme = () => {
-    const newIsDark = !isDark
-    setIsDark(newIsDark)
-
-    if (newIsDark) {
-      document.documentElement.classList.add('dark')
-      localStorage.setItem('theme', 'dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-      localStorage.setItem('theme', 'light')
-    }
+  if (!mounted) {
+    return null
   }
-
-  if (!isMounted) return null
 
   return (
     <Button
       variant="outline"
       size="icon"
-      onClick={toggleTheme}
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       className="rounded-full bg-transparent"
       aria-label="Toggle theme"
     >
-      {isDark ? <Sun size={18} /> : <Moon size={18} />}
+      {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
     </Button>
   )
 }
