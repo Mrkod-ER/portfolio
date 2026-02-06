@@ -128,7 +128,7 @@ export const projects: Project[] = [
 ]
 
 export const aboutMe = {
-  name: 'Alex Developer',
+  name: 'Abhishek Singh',
   role: 'Full Stack Developer',
   bio: 'Building scalable web applications and solving complex problems with code. Passionate about clean architecture and modern web technologies.',
   location: 'San Francisco, CA',
