@@ -28,18 +28,11 @@ export function ModuleCard({
 }: ModuleCardProps) {
   const [isExpanded, setIsExpanded] = useState(false)
 
-  const sizeClasses = {
-    small: 'col-span-1 row-span-1',
-    medium: 'col-span-1 md:col-span-2 row-span-1',
-    large: 'col-span-1 md:col-span-2 lg:col-span-2 row-span-2',
-  }
-
   return (
     <div
       className={cn(
-        'group relative overflow-hidden rounded-lg border border-border bg-card transition-all duration-300 hover:border-primary/50 hover:shadow-lg',
-        sizeClasses[size],
-        isExpanded && 'md:col-span-3 lg:col-span-3 row-span-auto',
+        'break-inside-avoid mb-4 group relative overflow-hidden rounded-lg border border-border bg-card transition-all duration-300 hover:border-primary/50 hover:shadow-lg',
+        isExpanded && 'fixed inset-4 z-50 m-auto max-h-[90vh] max-w-3xl overflow-y-auto',
         className,
       )}
     >
