@@ -5,6 +5,7 @@ import { AboutModule } from '@/components/modules/AboutModule'
 import { GoalsModule } from '@/components/modules/GoalsModule'
 import { ProfileStatsModule } from '@/components/modules/ProfileStatsModule'
 import { ProjectsModule } from '@/components/modules/ProjectsModule'
+import { HeroSection } from '@/components/HeroSection'
 import { getEnabledModules } from '@/config/modules'
 import { getCombinedStats } from '@/lib/actions/stats'
 
@@ -24,11 +25,11 @@ export default async function Home() {
 
   return (
     <div className="w-full">
+      <HeroSection />
       <MasonryGrid>
         {enabledModules.map((module) => moduleComponents[module.id])}
       </MasonryGrid>
     </div>
   )
 }
-
 
