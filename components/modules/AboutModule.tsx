@@ -1,8 +1,7 @@
-'use client'; 
-import Link from 'next/link'
+'use client';
 import { ModuleCard } from '@/components/ModuleCard'
 import { aboutMe } from '@/data/profiles'
-import { Github, Linkedin, Mail, MapPin, Twitter, ChevronRight } from 'lucide-react'
+import { Github, Linkedin, Mail, MapPin, Twitter } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export function AboutModule() {
@@ -24,45 +23,23 @@ export function AboutModule() {
     },
   ]
 
-  const expandedContent = (
-    <div className="space-y-4">
-      <div>
-        <h4 className="mb-2 font-semibold text-foreground">Skills</h4>
-        <div className="flex flex-wrap gap-2">
-          {aboutMe.skills.map((skill) => (
-            <span
-              key={skill}
-              className="rounded-full bg-muted px-3 py-1 text-sm text-muted-foreground"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-      <div className="text-sm text-muted-foreground">
-        <p>{aboutMe.bio}</p>
-      </div>
-    </div>
-  )
-
   return (
     <ModuleCard
       id="about"
       title={aboutMe.name}
       size="large"
       icon="👨‍💻"
-      expandedContent={expandedContent}
     >
-      <div className="space-y-4">
+      <div className="space-y-5">
         <div>
-          <p className="text-sm font-medium text-primary">{aboutMe.role}</p>
-          <div className="mt-2 flex items-center gap-1 text-sm text-muted-foreground">
+          <p className="text-base font-medium text-primary">{aboutMe.role}</p>
+          <div className="mt-2 flex items-center gap-1.5 text-sm text-muted-foreground">
             <MapPin size={16} />
             {aboutMe.location}
           </div>
         </div>
 
-        <p className="line-clamp-3 text-sm text-muted-foreground">{aboutMe.bio}</p>
+        <p className="text-sm text-muted-foreground leading-relaxed">{aboutMe.bio}</p>
 
         <div className="flex gap-2">
           {socialLinks.map(({ icon: Icon, href, label }) => (
@@ -71,41 +48,51 @@ export function AboutModule() {
               variant="outline"
               size="sm"
               asChild
-              className="h-8 w-8 p-0 bg-transparent"
+              className="h-9 w-9 p-0 bg-transparent transition-all duration-200 hover:scale-110"
             >
               <a href={href} target="_blank" rel="noopener noreferrer" title={label}>
-                <Icon size={16} />
+                <Icon size={18} />
               </a>
             </Button>
           ))}
-          <Button 
-            variant="outline" 
-            size="sm" 
-            asChild 
-            className="h-8 px-3 bg-transparent"
+          <Button
+            variant="outline"
+            size="sm"
+            asChild
+            className="h-9 px-4 bg-transparent transition-all duration-200 hover:scale-[1.02]"
           >
             <a href={`mailto:${aboutMe.email}`}>Email</a>
           </Button>
         </div>
 
-        <div className="grid grid-cols-2 gap-2 pt-2 text-xs">
-          <div className="rounded bg-muted p-2">
-            <p className="text-muted-foreground">Contests</p>
-            <p className="font-semibold text-foreground">45+</p>
+        <div className="grid grid-cols-2 gap-3">
+          <div className="border border-black dark:border-white/30 p-3 text-center transition-all duration-200 hover:shadow-md">
+            <p className="text-2xl font-bold tracking-tight text-foreground">45+</p>
+            <p className="text-xs text-muted-foreground mt-1">Contests</p>
           </div>
-          <div className="rounded bg-muted p-2">
-            <p className="text-muted-foreground">Problems Solved</p>
-            <p className="font-semibold text-foreground">1K+</p>
+          <div className="border border-black dark:border-white/30 p-3 text-center transition-all duration-200 hover:shadow-md">
+            <p className="text-2xl font-bold tracking-tight text-foreground">1K+</p>
+            <p className="text-xs text-muted-foreground mt-1">Problems Solved</p>
           </div>
         </div>
 
-        <Link href="/about" className="group block">
-          <div className="mt-4 flex items-center justify-between rounded-lg bg-muted/50 px-3 py-2 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors">
-            <span>View Full Profile</span>
-            <ChevronRight size={14} />
+        {/* Skills */}
+        <div>
+          <h4 className="mb-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Skills</h4>
+          <div className="flex flex-wrap gap-2">
+            {aboutMe.skills.slice(0, 6).map((skill) => (
+              <span
+                key={skill}
+                className="rounded-full bg-muted px-3 py-1.5 text-xs font-medium text-muted-foreground transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:scale-105"
+              >
+                {skill}
+              </span>
+            ))}
           </div>
-        </Link>
+        </div>
       </div>
     </ModuleCard>
   )
 }
+
+

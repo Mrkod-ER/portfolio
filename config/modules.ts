@@ -1,4 +1,4 @@
-export type ModuleType = 'about' | 'goals' | 'codeforces' | 'leetcode' | 'codechef' | 'geeksforgeeks' | 'projects'
+export type ModuleType = 'about' | 'profile-stats' | 'projects' | 'goals'
 
 export interface ModuleConfig {
   id: ModuleType
@@ -9,12 +9,10 @@ export interface ModuleConfig {
 
 export const modulesConfig: ModuleConfig[] = [
   { id: 'about', enabled: true, size: 'large' },
-  { id: 'goals', enabled: true, size: 'medium' },
-  { id: 'codeforces', enabled: true, size: 'medium' },
-  { id: 'leetcode', enabled: true, size: 'medium' },
-  { id: 'codechef', enabled: true, size: 'small' },
-  { id: 'geeksforgeeks', enabled: true, size: 'small' },
+  { id: 'profile-stats', enabled: true, size: 'large' },
   { id: 'projects', enabled: true, size: 'large' },
+  { id: 'goals', enabled: true, size: 'medium' },
 ]
 
 export const getEnabledModules = () => modulesConfig.filter(m => m.enabled)
+

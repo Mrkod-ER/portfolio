@@ -1,34 +1,25 @@
-'use client'
-
 import React from "react"
 
 import { MasonryGrid } from '@/components/ui/masonry-grid'
 import { AboutModule } from '@/components/modules/AboutModule'
 import { GoalsModule } from '@/components/modules/GoalsModule'
-import { CodingProfileModule } from '@/components/modules/CodingProfileModule'
+import { ProfileStatsModule } from '@/components/modules/ProfileStatsModule'
 import { ProjectsModule } from '@/components/modules/ProjectsModule'
 import { getEnabledModules } from '@/config/modules'
-import {
-  codeforces,
-  codechef,
-  geeksforgeeks,
-  leetcode,
-} from '@/data/profiles'
+import { getCombinedStats } from '@/lib/actions/stats'
 
-export default function Home() {
+export const revalidate = 43200 // 12 hours
+
+export default async function Home() {
   const enabledModules = getEnabledModules()
+  const stats = await getCombinedStats()
 
   // Map module IDs to their components
   const moduleComponents: Record<string, React.ReactNode> = {
     about: <AboutModule key="about" />,
-    goals: <GoalsModule key="goals" />,
-    codeforces: <CodingProfileModule key="codeforces" profile={codeforces} icon="⚡" />,
-    leetcode: <CodingProfileModule key="leetcode" profile={leetcode} icon="💻" />,
-    codechef: <CodingProfileModule key="codechef" profile={codechef} icon="🍲" />,
-    geeksforgeeks: (
-      <CodingProfileModule key="geeksforgeeks" profile={geeksforgeeks} icon="👨‍🎓" />
-    ),
+    'profile-stats': <ProfileStatsModule key="profile-stats" liveStats={stats} />,
     projects: <ProjectsModule key="projects" />,
+    goals: <GoalsModule key="goals" />,
   }
 
   return (
@@ -39,3 +30,5 @@ export default function Home() {
     </div>
   )
 }
+
+
