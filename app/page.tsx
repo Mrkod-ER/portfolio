@@ -6,30 +6,34 @@ import { GoalsModule } from '@/components/modules/GoalsModule'
 import { ProfileStatsModule } from '@/components/modules/ProfileStatsModule'
 import { ProjectsModule } from '@/components/modules/ProjectsModule'
 import { HeroSection } from '@/components/HeroSection'
-import { getEnabledModules } from '@/config/modules'
 import { getCombinedStats } from '@/lib/actions/stats'
 
 export const revalidate = 43200 // 12 hours
 
 export default async function Home() {
-  const enabledModules = getEnabledModules()
   const stats = await getCombinedStats()
-
-  // Map module IDs to their components
-  const moduleComponents: Record<string, React.ReactNode> = {
-    about: <AboutModule key="about" />,
-    'profile-stats': <ProfileStatsModule key="profile-stats" liveStats={stats} />,
-    projects: <ProjectsModule key="projects" />,
-    goals: <GoalsModule key="goals" />,
-  }
 
   return (
     <div className="w-full">
       <HeroSection />
-      <MasonryGrid>
-        {enabledModules.map((module) => moduleComponents[module.id])}
-      </MasonryGrid>
+
+      {/* Main Content - Masonry Grid */}
+      <section className="px-4 md:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <MasonryGrid>
+            <AboutModule liveStats={stats} />
+            <ProfileStatsModule liveStats={stats} />
+            <ProjectsModule />
+          </MasonryGrid>
+        </div>
+      </section>
+
+      {/* Goals Section - Full Width Horizontal */}
+      <section className="px-4 md:px-6 lg:px-8 py-12">
+        <div className="max-w-7xl mx-auto">
+          <GoalsModule />
+        </div>
+      </section>
     </div>
   )
 }
-

@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTheme } from 'next-themes'
-import { Home, User, FolderOpen, Menu, Moon, Sun } from 'lucide-react'
+import { Home, User, FolderOpen, Menu, Moon, Sun, Trophy } from 'lucide-react'
 
 import {
     Sidebar,
@@ -29,15 +29,15 @@ const navItems = [
         icon: Home,
     },
     {
-        title: 'Profile',
-        href: '/profile',
-        icon: User,
-    },
-    {
         title: 'Projects',
         href: '/project',
         icon: FolderOpen,
     },
+    {
+        title: 'Profiles Stats',
+        href: '/competitive-programming',
+        icon: Trophy,
+    }
 ]
 
 export function AppSidebar() {

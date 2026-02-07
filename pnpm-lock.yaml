@@ -123,8 +123,8 @@ importers:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       profile-stats:
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: ^0.2.1
+        version: 0.2.1
       react:
         specifier: ^19
         version: 19.2.4
@@ -1962,8 +1962,8 @@ packages:
     resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
     engines: {node: ^10 || ^12 || >=14}
 
-  profile-stats@0.1.0:
-    resolution: {integrity: sha512-3Q1uUoNN4aR7rAgtAStAqt66qUwDnhoy0yfCEbdrgU4bF/DK7JtZOdmNTtUSSGoSKrVjEN4jmNpvKAtKoUYGXA==}
+  profile-stats@0.2.1:
+    resolution: {integrity: sha512-+FpFHGKdeZN9wPBXEYeA6kmeWzT7ehN1vtYjeBw11UtRqmjLMExeSqzaJRZNxpnC4P0R/bBJdmJOLfMEapDGMA==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -3864,7 +3864,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  profile-stats@0.1.0:
+  profile-stats@0.2.1:
     dependencies:
       cheerio: 1.2.0
       cli-table3: 0.6.5

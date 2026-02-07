@@ -11,10 +11,10 @@ import {
 } from '@/data/profiles'
 
 const PLATFORM_CONFIG = [
-    { key: 'codeforces', icon: '⚡', name: 'Codeforces', staticData: codeforces, maxScale: 3500, color: '#1890ff' },
-    { key: 'leetcode', icon: '💻', name: 'LeetCode', staticData: leetcode, maxScale: 3500, color: '#ffa116' },
-    { key: 'codechef', icon: '🍲', name: 'CodeChef', staticData: codechef, maxScale: 3000, color: '#5b4638' },
-    { key: 'gfg', icon: '👨‍🎓', name: 'GfG', staticData: geeksforgeeks, maxScale: 2000, color: '#2f8d46' },
+    { key: 'codeforces', icon: '⚡', name: 'Codeforces', staticData: codeforces, maxScale: 1800, color: '#1890ff', showRatingBar: true },
+    { key: 'leetcode', icon: '💻', name: 'LeetCode', staticData: leetcode, maxScale: 1900, color: '#ffa116', showRatingBar: true },
+    { key: 'codechef', icon: '🍲', name: 'CodeChef', staticData: codechef, maxScale: 1800, color: '#5b4638', showRatingBar: true },
+    { key: 'gfg', icon: '👨‍🎓', name: 'GfG', staticData: geeksforgeeks, maxScale: 2000, color: '#2f8d46', showRatingBar: false },
 ] as const
 
 interface ProfileStatsModuleProps {
@@ -22,7 +22,7 @@ interface ProfileStatsModuleProps {
 }
 
 export function ProfileStatsModule({ liveStats }: ProfileStatsModuleProps) {
-    const platforms = PLATFORM_CONFIG.map(({ key, icon, name, staticData, maxScale, color }) => {
+    const platforms = PLATFORM_CONFIG.map(({ key, icon, name, staticData, maxScale, color, showRatingBar }) => {
         const live = liveStats?.[key as keyof PlatformStats]
 
         if (live && 'success' in live && live.success === true) {
@@ -38,7 +38,9 @@ export function ProfileStatsModule({ liveStats }: ProfileStatsModuleProps) {
 
             // Extract contests count - different field names per platform
             let contestsCount = staticData.contestsCount
-            if (data.contests !== undefined) {
+            if (data.contestsCount !== undefined) {
+                contestsCount = data.contestsCount // codeforces
+            } else if (data.contests !== undefined) {
                 contestsCount = data.contests // codechef
             } else if (data.contestsAttended !== undefined) {
                 contestsCount = data.contestsAttended // leetcode
@@ -51,7 +53,7 @@ export function ProfileStatsModule({ liveStats }: ProfileStatsModuleProps) {
             } else if (data.contestRating !== undefined) {
                 rating = Math.round(data.contestRating) // leetcode
             } else if (data.codingScore !== undefined) {
-                rating = data.codingScore // gfg
+                rating = Math.round(data.codingScore) // gfg - round it
             }
 
             // Extract rank - handle stars for codechef
@@ -61,9 +63,9 @@ export function ProfileStatsModule({ liveStats }: ProfileStatsModuleProps) {
             }
 
             return {
-                name, icon, color, maxScale,
+                name, icon, color, maxScale, showRatingBar,
                 rating,
-                maxRating: data.maxRating ?? staticData.maxRating,
+                maxRating: Math.round(data.maxRating ?? staticData.maxRating),
                 rank,
                 problemsSolved,
                 contestsCount,
@@ -72,7 +74,7 @@ export function ProfileStatsModule({ liveStats }: ProfileStatsModuleProps) {
         }
 
         return {
-            name, icon, color, maxScale,
+            name, icon, color, maxScale, showRatingBar,
             rating: staticData.rating,
             maxRating: staticData.maxRating,
             rank: staticData.rank,
@@ -126,25 +128,38 @@ export function ProfileStatsModule({ liveStats }: ProfileStatsModuleProps) {
                                 </Badge>
                             </div>
 
-                            {/* Rating bar */}
-                            <div className="mb-2">
-                                <div className="flex items-center justify-between text-xs mb-1">
-                                    <span className="text-muted-foreground">Rating</span>
-                                    <span className="font-bold text-foreground">{platform.rating} / {platform.maxRating}</span>
+                            {/* Rating bar - only show if showRatingBar is true */}
+                            {platform.showRatingBar ? (
+                                <div className="mb-2">
+                                    <div className="flex items-center justify-between text-xs mb-1">
+                                        <span className="text-muted-foreground">Rating</span>
+                                        <span className="font-bold text-foreground">{platform.rating} / {platform.maxScale}</span>
+                                    </div>
+                                    <div className="h-2 w-full bg-muted">
+                                        <div
+                                            className="h-full transition-all duration-500"
+                                            style={{
+                                                width: `${Math.min((platform.rating / platform.maxScale) * 100, 100)}%`,
+                                                backgroundColor: platform.color,
+                                            }}
+                                        />
+                                    </div>
                                 </div>
-                                <div className="h-2 w-full bg-muted">
-                                    <div
-                                        className="h-full transition-all duration-500"
-                                        style={{
-                                            width: `${Math.min((platform.rating / platform.maxScale) * 100, 100)}%`,
-                                            backgroundColor: platform.color,
-                                        }}
-                                    />
+                            ) : (
+                                <div className="flex items-center justify-between text-xs mb-2">
+                                    <span className="text-muted-foreground">Coding Score</span>
+                                    <span className="font-bold text-foreground">{platform.rating}</span>
                                 </div>
-                            </div>
+                            )}
 
                             {/* Stats row */}
-                            <div className="flex gap-4 text-xs">
+                            <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                                {platform.showRatingBar && (
+                                    <div>
+                                        <span className="text-muted-foreground">Max: </span>
+                                        <span className="font-semibold text-foreground">{platform.maxRating}</span>
+                                    </div>
+                                )}
                                 <div>
                                     <span className="text-muted-foreground">Solved: </span>
                                     <span className="font-semibold text-foreground">{platform.problemsSolved}</span>

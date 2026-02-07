@@ -8,19 +8,37 @@ export function GoalsModule() {
     <ModuleCard
       id="goals"
       title={goals.title}
-      size="medium"
+      size="large"
       icon="🎯"
     >
-      <div className="space-y-3">
-        {goals.items.slice(0, 3).map((item, idx) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {goals.items.map((item, idx) => (
           <div
             key={idx}
-            className="flex items-start gap-3 p-3 border border-black dark:border-white/30 transition-all duration-200 hover:shadow-md"
+            className="group relative overflow-hidden border border-black dark:border-white/30 p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
           >
-            <span className="text-xl">{item.icon}</span>
-            <div className="flex-1">
-              <p className="text-base font-semibold tracking-tight text-foreground">{item.title}</p>
-              <p className="text-sm text-muted-foreground mt-0.5 leading-relaxed">
+            {/* Hover gradient overlay */}
+            <div
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style={{
+                background: `linear-gradient(135deg, ${idx === 0 ? 'rgba(59,130,246,0.08)' :
+                    idx === 1 ? 'rgba(168,85,247,0.08)' :
+                      idx === 2 ? 'rgba(34,197,94,0.08)' :
+                        'rgba(249,115,22,0.08)'
+                  } 0%, transparent 100%)`
+              }}
+            />
+
+            <div className="relative text-center">
+              {/* Icon */}
+              <div className="w-12 h-12 mx-auto mb-3 flex items-center justify-center border border-black dark:border-white/30 group-hover:border-transparent group-hover:bg-gradient-to-br group-hover:from-primary/10 group-hover:to-accent/10 transition-all duration-300">
+                <span className="text-2xl">{item.icon}</span>
+              </div>
+
+              <h4 className="text-sm font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors duration-300 mb-2">
+                {item.title}
+              </h4>
+              <p className="text-xs text-muted-foreground leading-relaxed">
                 {item.description}
               </p>
             </div>
@@ -30,5 +48,3 @@ export function GoalsModule() {
     </ModuleCard>
   )
 }
-
-
