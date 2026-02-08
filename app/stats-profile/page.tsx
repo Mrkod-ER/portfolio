@@ -8,7 +8,7 @@ export default async function ProfilePage() {
 
     return (
         <StatsProvider stats={stats}>
-            <div>coding profile page</div>
+            <div className="p-4 md:p-8">coding profile page</div>
         </StatsProvider>
     );
 }

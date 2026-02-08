@@ -10,6 +10,8 @@ export default function GoalsPage() {
   const router = useRouter()
 
   return (
-    <div>Goals page</div>
+    <div className="p-4 md:p-8">
+      Goals page
+    </div>
   )
 }

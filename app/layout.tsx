@@ -36,7 +36,7 @@ export default function RootLayout({
                 <SidebarTrigger />
                 <h1 className="text-lg font-semibold">Portfolio</h1>
               </div>
-              <div className="p-4 md:p-8">
+              <div>
                 {children}
               </div>
             </main>

@@ -5,7 +5,9 @@ import { AboutModule } from '@/components/modules/AboutModule'
 import { GoalsModule } from '@/components/modules/GoalsModule'
 import { ProfileStatsModule } from '@/components/modules/ProfileStatsModule'
 import { ProjectsModule } from '@/components/modules/ProjectsModule'
+
 import { HeroSection } from '@/components/HeroSection'
+import { Footer } from '@/components/Footer'
 import { getCombinedStats } from '@/lib/actions/stats'
 
 export const revalidate = 43200 // 12 hours
@@ -23,6 +25,7 @@ export default async function Home() {
           <MasonryGrid>
             <AboutModule liveStats={stats} />
             <ProfileStatsModule liveStats={stats} />
+
             <ProjectsModule />
           </MasonryGrid>
         </div>
@@ -34,6 +37,9 @@ export default async function Home() {
           <GoalsModule />
         </div>
       </section>
+
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }
