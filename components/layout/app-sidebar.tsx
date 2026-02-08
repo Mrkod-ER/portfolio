@@ -29,15 +29,15 @@ const navItems = [
         icon: Home,
     },
     {
+        title: 'Profiles Stats',
+        href: '/competitive-programming',
+        icon: Trophy,
+    },
+    {
         title: 'Projects',
         href: '/project',
         icon: FolderOpen,
     },
-    {
-        title: 'Profiles Stats',
-        href: '/competitive-programming',
-        icon: Trophy,
-    }
 ]
 
 export function AppSidebar() {
