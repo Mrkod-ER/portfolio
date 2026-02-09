@@ -20,6 +20,7 @@ const PLATFORM_CONFIG = {
         icon: '⚡',
         color: '#3b82f6',
         link: 'https://codeforces.com/profile/',
+        username: 'koderabhishek',
         staticData: codeforces,
         targetRating: 1800,
         description: 'Algorithm contests & problem solving',
@@ -29,6 +30,7 @@ const PLATFORM_CONFIG = {
         icon: '💻',
         color: '#f97316',
         link: 'https://leetcode.com/',
+        username: 'Mrkod-ER',
         staticData: leetcode,
         targetRating: 1900,
         description: 'DSA practice & weekly contests',
@@ -38,6 +40,7 @@ const PLATFORM_CONFIG = {
         icon: '🍲',
         color: '#a16207',
         link: 'https://www.codechef.com/users/',
+        username: 'king_koder',
         staticData: codechef,
         targetRating: 1800,
         description: 'Long challenges',
@@ -47,6 +50,7 @@ const PLATFORM_CONFIG = {
         icon: '🧑‍💻',
         color: '#22c55e',
         link: 'https://www.geeksforgeeks.org/user/',
+        username: 'koderabhishek',
         staticData: geeksforgeeks,
         targetRating: null,
         description: 'Practice & learning platform',
@@ -93,14 +97,14 @@ export default async function CompetitiveProgrammingPage() {
         let rank = config.staticData.rank
         let solved = config.staticData.problemsSolved
         let contests = config.staticData.contestsCount
-        let username = ''
+        let username = config.username
         let avatar = ''
         let globalRanking = null
         let countryRanking = null
         let reputation = null
 
         if (data) {
-            username = data.username || ''
+            username = data.username || config.username
             avatar = data.avatar || ''
 
             if (key === 'codeforces') {

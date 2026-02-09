@@ -28,7 +28,7 @@ const fetchStatsUncached = async (): Promise<PlatformStats> => {
 
 export const getCombinedStats = unstable_cache(
     fetchStatsUncached,
-    ["competitive-programming-stats"],
+    ["competitive-programming-stats", JSON.stringify(USERNAMES)],
     {
         revalidate: 43200, // 12 hours in seconds
         tags: ["stats"],

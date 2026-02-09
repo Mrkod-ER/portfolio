@@ -22,45 +22,45 @@ export interface Project {
 
 export const codeforces: CodeProfile = {
   name: 'Codeforces',
-  rating: 1850,
-  maxRating: 1850,
-  rank: 'Candidate Master',
-  contestsCount: 45,
-  problemsSolved: 892,
-  link: 'https://codeforces.com',
+  rating: 0,
+  maxRating: 0,
+  rank: 'N/A',
+  contestsCount: 0,
+  problemsSolved: 0,
+  link: 'https://codeforces.com/profile/koderabhishek',
   color: '#FF6500'
 }
 
 export const leetcode: CodeProfile = {
   name: 'LeetCode',
-  rating: 2180,
-  maxRating: 2180,
-  rank: 'Knight',
-  contestsCount: 52,
-  problemsSolved: 487,
-  link: 'https://leetcode.com',
+  rating: 0,
+  maxRating: 0,
+  rank: 'N/A',
+  contestsCount: 0,
+  problemsSolved: 0,
+  link: 'https://leetcode.com/Mrkod-ER',
   color: '#FFA500'
 }
 
 export const codechef: CodeProfile = {
   name: 'CodeChef',
-  rating: 1950,
-  maxRating: 1950,
-  rank: '5★',
-  contestsCount: 38,
-  problemsSolved: 625,
-  link: 'https://codechef.com',
+  rating: 0,
+  maxRating: 0,
+  rank: 'N/A',
+  contestsCount: 0,
+  problemsSolved: 0,
+  link: 'https://www.codechef.com/users/king_koder',
   color: '#8B4513'
 }
 
 export const geeksforgeeks: CodeProfile = {
   name: 'GeeksforGeeks',
-  rating: 2100,
-  maxRating: 2100,
-  rank: 'Top Contributor',
+  rating: 0,
+  maxRating: 0,
+  rank: 'N/A',
   contestsCount: 0,
-  problemsSolved: 1200,
-  link: 'https://geeksforgeeks.org',
+  problemsSolved: 0,
+  link: 'https://www.geeksforgeeks.org/user/koderabhishek/',
   color: '#2DBE60'
 }
 

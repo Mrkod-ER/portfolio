@@ -70,6 +70,7 @@ export function ProfileStatsModule({ liveStats }: ProfileStatsModuleProps) {
                 problemsSolved,
                 contestsCount,
                 isLive: true,
+                link: staticData.link,
             }
         }
 
@@ -81,6 +82,7 @@ export function ProfileStatsModule({ liveStats }: ProfileStatsModuleProps) {
             problemsSolved: staticData.problemsSolved,
             contestsCount: staticData.contestsCount,
             isLive: false,
+            link: staticData.link,
         }
     })
 
@@ -110,9 +112,12 @@ export function ProfileStatsModule({ liveStats }: ProfileStatsModuleProps) {
                 {/* Platform Cards - Compact */}
                 <div className="space-y-2">
                     {platforms.map((platform) => (
-                        <div
+                        <a
                             key={platform.name}
-                            className="border border-black dark:border-white/30 p-3 transition-all duration-200 hover:shadow-md"
+                            href={platform.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block border border-black dark:border-white/30 p-3 transition-all duration-200 hover:shadow-md hover:scale-[1.02]"
                         >
                             {/* Header row */}
                             <div className="flex items-center justify-between mb-2">
@@ -169,7 +174,7 @@ export function ProfileStatsModule({ liveStats }: ProfileStatsModuleProps) {
                                     <span className="font-semibold text-foreground">{platform.contestsCount}</span>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     ))}
                 </div>
             </div>
