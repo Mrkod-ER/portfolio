@@ -1,14 +1,13 @@
 import React from "react"
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Bebas_Neue, Manrope } from 'next/font/google'
 
 import './globals.css'
 import { ThemeProvider } from "@/components/theme-provider"
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/layout/app-sidebar"
+import { Navbar } from "@/components/ui/Navbar"
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
-const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
+const bebasNeue = Bebas_Neue({ subsets: ['latin'], variable: '--font-display', weight: '400' })
+const manrope = Manrope({ subsets: ['latin'], variable: '--font-body', weight: ['200', '300', '400', '500', '600', '700', '800'] })
 
 export const metadata: Metadata = {
   title: 'Developer Portfolio',
@@ -21,26 +20,20 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${geist.variable} ${geistMono.variable}`}>
-      <body className="font-sans antialiased">
+    <html lang="en" suppressHydrationWarning className={`${bebasNeue.variable} ${manrope.variable}`}>
+      <body className="font-body antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem={false}
           disableTransitionOnChange
         >
-          <SidebarProvider>
-            <AppSidebar />
-            <main className="flex-1 w-full overflow-auto">
-              <div className="sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4">
-                <SidebarTrigger />
-                <h1 className="text-lg font-semibold">Portfolio</h1>
-              </div>
-              <div>
-                {children}
-              </div>
+          <div className="flex min-h-screen flex-col bg-background text-foreground">
+            <Navbar />
+            <main className="flex-1 w-full pt-[72px]">
+              {children}
             </main>
-          </SidebarProvider>
+          </div>
         </ThemeProvider>
       </body>
     </html>

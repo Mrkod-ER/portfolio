@@ -1,130 +1,125 @@
 'use client'
 
-import { ModuleCard } from '@/components/ModuleCard'
-import { projects } from '@/data/profiles'
-import { Badge } from '@/components/ui/badge'
-import { Github, ExternalLink, Sparkles } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import React from 'react'
+import { Github, ExternalLink, Code2, Smartphone, Cpu, Terminal } from 'lucide-react'
+import { projects, Project } from '@/data/profiles'
+import { AsymmetricGrid, AsymmetricGridItem } from '@/components/ui/asymmetric-grid'
+import { useInView } from '@/hooks/useInView'
 
-const categoryColors = {
-  web: 'from-blue-500/10 to-cyan-500/10',
-  mobile: 'from-purple-500/10 to-pink-500/10',
-  ml: 'from-green-500/10 to-emerald-500/10',
-  tools: 'from-orange-500/10 to-amber-500/10',
+const categoryIcons: Record<Project['category'], React.ReactNode> = {
+  web: <Code2 className="w-4 h-4" />,
+  mobile: <Smartphone className="w-4 h-4" />,
+  ml: <Cpu className="w-4 h-4" />,
+  tools: <Terminal className="w-4 h-4" />,
 }
 
-const categoryIcons = {
-  web: '🌐',
-  mobile: '📱',
-  ml: '🤖',
-  tools: '🛠️',
-}
+/** Asymmetric spans for gallery-like layout: wide, narrow, narrow, narrow, narrow, wide */
+const PROJECT_SPANS: (4 | 5 | 6 | 7 | 8)[] = [8, 4, 4, 4, 4, 8]
 
 export function ProjectsModule() {
-  const featuredProjects = projects.filter((p) => p.featured)
+  const { ref: headerRef, isInView: headerVisible } = useInView()
 
   return (
-    <ModuleCard
-      id="projects"
-      title="Featured Projects"
-      size="large"
-      icon="🚀"
-    >
-      <div className="space-y-4">
-        {featuredProjects.map((project, idx) => (
-          <div
-            key={project.id}
-            className="group relative overflow-hidden border border-black dark:border-white/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-          >
-            {/* Gradient background based on category */}
-            <div
-              className={`absolute inset-0 bg-gradient-to-br ${categoryColors[project.category]} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-            />
-
-            <div className="relative p-5">
-              {/* Header */}
-              <div className="flex items-start justify-between gap-3 mb-3">
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">{categoryIcons[project.category]}</span>
-                  <div>
-                    <h4 className="text-base font-bold tracking-tight text-foreground group-hover:text-primary transition-colors duration-300">
-                      {project.name}
-                    </h4>
-                    <span className="text-xs text-muted-foreground capitalize">{project.category}</span>
-                  </div>
-                </div>
-                {project.featured && (
-                  <Badge className="gap-1 bg-gradient-to-r from-amber-500 to-orange-500 text-white border-0 text-xs">
-                    <Sparkles size={10} />
-                    Featured
-                  </Badge>
-                )}
-              </div>
-
-              {/* Description */}
-              <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                {project.description}
-              </p>
-
-              {/* Tech Stack */}
-              <div className="flex flex-wrap gap-1.5 mb-4">
-                {project.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2 py-1 text-xs font-medium border border-black/20 dark:border-white/20 bg-background/50 text-foreground transition-all duration-200 hover:bg-foreground hover:text-background"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex gap-2">
-                {project.github && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    asChild
-                    className="flex-1 h-9 gap-2 bg-transparent transition-all duration-200 hover:bg-foreground hover:text-background hover:scale-[1.02]"
-                  >
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Github size={14} />
-                      View Code
-                    </a>
-                  </Button>
-                )}
-                {project.liveDemo && (
-                  <Button
-                    size="sm"
-                    asChild
-                    className="flex-1 h-9 gap-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white border-0 transition-all duration-200 hover:scale-[1.02]"
-                  >
-                    <a
-                      href={project.liveDemo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <ExternalLink size={14} />
-                      Live Demo
-                    </a>
-                  </Button>
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
-
-        {/* View All Projects hint */}
-        <div className="text-center pt-2">
-          <p className="text-xs text-muted-foreground">
-            More projects coming soon...
+    <section className="w-full py-16 md:py-24" id="projects">
+      <div className="space-y-10">
+        <div
+          ref={headerRef}
+          style={{
+            opacity: headerVisible ? 1 : 0,
+            transform: headerVisible ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+          }}
+        >
+          <h2 className="text-2xl font-semibold tracking-tight text-zinc-100">
+            Projects
+          </h2>
+          <p className="text-zinc-500 text-sm mt-2 max-w-xl">
+            Selected work — web, mobile, and tools.
           </p>
         </div>
+
+        <AsymmetricGrid>
+          {projects.map((project, index) => (
+            <AsymmetricGridItem key={project.id} span={PROJECT_SPANS[index % PROJECT_SPANS.length]}>
+              <ProjectCard project={project} index={index} />
+            </AsymmetricGridItem>
+          ))}
+        </AsymmetricGrid>
       </div>
-    </ModuleCard>
+    </section>
+  )
+}
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const { ref, isInView } = useInView({ threshold: 0.08 })
+  const delay = index * 80
+
+  return (
+    <article
+      ref={ref}
+      className="h-full border border-zinc-800 bg-zinc-900/50 p-5 md:p-6 transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-900/80 group relative overflow-hidden"
+      style={{
+        opacity: isInView ? 1 : 0,
+        transform: isInView ? 'translateY(0)' : 'translateY(24px)',
+        transition: `opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+      }}
+    >
+      {/* Hover accent line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-blue-500 via-violet-500 to-fuchsia-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+      <div className="flex flex-col h-full">
+        <div className="flex items-center justify-between gap-3 mb-3">
+          <span className="inline-flex items-center gap-1.5 text-zinc-500 text-xs font-medium uppercase tracking-wider">
+            {categoryIcons[project.category]}
+            {project.category}
+          </span>
+          {project.featured && (
+            <span className="text-[10px] uppercase tracking-wider text-zinc-500 border border-zinc-700 px-2 py-0.5">
+              Featured
+            </span>
+          )}
+        </div>
+        <h3 className="text-lg font-medium text-zinc-100 group-hover:text-zinc-50 transition-colors">
+          {project.name}
+        </h3>
+        <p className="text-zinc-500 text-sm leading-relaxed mt-2 flex-1">
+          {project.description}
+        </p>
+        <div className="flex flex-wrap gap-2 mt-4">
+          {project.techStack.map((tech) => (
+            <span
+              key={tech}
+              className="text-xs text-zinc-600 border border-zinc-700/50 px-2 py-1"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+        <div className="flex gap-3 mt-5 pt-4 border-t border-zinc-800">
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
+            >
+              <Github className="w-3.5 h-3.5" />
+              Code
+            </a>
+          )}
+          {project.liveDemo && (
+            <a
+              href={project.liveDemo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              Demo
+            </a>
+          )}
+        </div>
+      </div>
+    </article>
   )
 }
