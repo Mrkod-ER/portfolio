@@ -346,32 +346,38 @@ export function CompetitiveProgrammingModule({ stats }: CompetitiveProgrammingMo
                                 </div>
                             )}
 
-                            {/* Stats Grid */}
-                            <div className="grid grid-cols-2 gap-2 mb-3">
-                                <div className="p-2.5 text-center bg-zinc-900/40 border border-zinc-800/50 hover:border-zinc-700/50 transition-colors">
-                                    <p className="text-lg font-semibold text-zinc-100 tracking-tight">{platform.solved}</p>
-                                    <p className="text-[8px] text-zinc-500 uppercase tracking-wider font-medium">Solved</p>
+                            {/* Stats Grid - Hide for LeetCode to save space */}
+                            {platform.key !== 'leetcode' && (
+                                <div className="grid grid-cols-2 gap-2 mb-3">
+                                    <div className="p-2.5 text-center bg-zinc-900/40 border border-zinc-800/50 hover:border-zinc-700/50 transition-colors">
+                                        <p className="text-lg font-semibold text-zinc-100 tracking-tight">{platform.solved}</p>
+                                        <p className="text-[8px] text-zinc-500 uppercase tracking-wider font-medium">Solved</p>
+                                    </div>
+                                    <div className="p-2.5 text-center bg-zinc-900/40 border border-zinc-800/50 hover:border-zinc-700/50 transition-colors">
+                                        <p className="text-lg font-semibold text-zinc-100 tracking-tight">{platform.contests || '—'}</p>
+                                        <p className="text-[8px] text-zinc-500 uppercase tracking-wider font-medium">Contests</p>
+                                    </div>
                                 </div>
-                                <div className="p-2.5 text-center bg-zinc-900/40 border border-zinc-800/50 hover:border-zinc-700/50 transition-colors">
-                                    <p className="text-lg font-semibold text-zinc-100 tracking-tight">{platform.contests || '—'}</p>
-                                    <p className="text-[8px] text-zinc-500 uppercase tracking-wider font-medium">Contests</p>
-                                </div>
-                            </div>
+                            )}
 
-                            {/* LeetCode Breakdown */}
-                            {platform.solvedBreakdown && (
-                                <div className="grid grid-cols-3 gap-1.5 mb-3">
-                                    <div className="text-center py-2 bg-zinc-900/40 border border-zinc-800/50 hover:border-emerald-500/20 transition-colors">
+                            {/* LeetCode Special Compact Grid */}
+                            {platform.key === 'leetcode' && platform.solvedBreakdown && (
+                                <div className="grid grid-cols-4 gap-1.5 mb-3">
+                                    <div className="text-center py-2 bg-zinc-900/40 border border-zinc-800/50 hover:border-zinc-700/50 transition-colors flex flex-col justify-center">
+                                        <p className="text-xs font-bold text-zinc-100">{platform.contests}</p>
+                                        <p className="text-[6px] text-zinc-500 uppercase tracking-wider font-medium">Contests</p>
+                                    </div>
+                                    <div className="text-center py-2 bg-zinc-900/40 border border-zinc-800/50 hover:border-emerald-500/20 transition-colors flex flex-col justify-center">
                                         <p className="text-xs font-bold text-emerald-400">{platform.solvedBreakdown.easy}</p>
-                                        <p className="text-[7px] text-zinc-500 uppercase tracking-wider font-medium">Easy</p>
+                                        <p className="text-[6px] text-zinc-500 uppercase tracking-wider font-medium">Easy</p>
                                     </div>
-                                    <div className="text-center py-2 bg-zinc-900/40 border border-zinc-800/50 hover:border-amber-500/20 transition-colors">
+                                    <div className="text-center py-2 bg-zinc-900/40 border border-zinc-800/50 hover:border-amber-500/20 transition-colors flex flex-col justify-center">
                                         <p className="text-xs font-bold text-amber-400">{platform.solvedBreakdown.medium}</p>
-                                        <p className="text-[7px] text-zinc-500 uppercase tracking-wider font-medium">Med</p>
+                                        <p className="text-[6px] text-zinc-500 uppercase tracking-wider font-medium">Med</p>
                                     </div>
-                                    <div className="text-center py-2 bg-zinc-900/40 border border-zinc-800/50 hover:border-red-500/20 transition-colors">
+                                    <div className="text-center py-2 bg-zinc-900/40 border border-zinc-800/50 hover:border-red-500/20 transition-colors flex flex-col justify-center">
                                         <p className="text-xs font-bold text-red-400">{platform.solvedBreakdown.hard}</p>
-                                        <p className="text-[7px] text-zinc-500 uppercase tracking-wider font-medium">Hard</p>
+                                        <p className="text-[6px] text-zinc-500 uppercase tracking-wider font-medium">Hard</p>
                                     </div>
                                 </div>
                             )}
