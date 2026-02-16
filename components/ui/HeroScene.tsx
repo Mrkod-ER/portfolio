@@ -2,7 +2,7 @@
 
 import React, { useRef, useMemo } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { Float, PerspectiveCamera, Stars, Tube, MeshDistortMaterial, Points, PointMaterial } from '@react-three/drei'
+import { PerspectiveCamera, Stars, Tube, MeshDistortMaterial, Points, PointMaterial } from '@react-three/drei'
 import * as THREE from 'three'
 
 // Custom random generator (reused to avoid external deps)
