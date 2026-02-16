@@ -67,9 +67,9 @@ export const geeksforgeeks: CodeProfile = {
 export const projects: Project[] = [
   {
     id: '1',
-    name: 'AI Chat Platform',
+    name: 'competetive-programming-stats Extractor module',
     description: 'Real-time chat application with AI-powered responses and message history.',
-    techStack: ['Next.js', 'TypeScript', 'Tailwind', 'OpenAI'],
+    techStack: ['Typescript', 'javascript', 'Node.js'],
     github: 'https://github.com',
     liveDemo: 'https://example.com',
     category: 'web',
@@ -131,12 +131,12 @@ export const aboutMe = {
   name: 'Abhishek Singh',
   role: 'Full Stack Developer',
   bio: 'Building scalable web applications and solving complex problems with code. Passionate about clean architecture and modern web technologies.',
-  location: 'San Francisco, CA',
-  email: 'alex@example.com',
-  github: 'https://github.com',
+  location: 'Bareilly, UttarPradesh',
+  email: 'abhisheksinghdev5@gmail.com',
+  github: 'https://github.com/Mrkod-ER',
   linkedin: 'https://linkedin.com',
-  twitter: 'https://twitter.com',
-  skills: ['JavaScript', 'TypeScript', 'React', 'Next.js', 'Node.js', 'PostgreSQL', 'Tailwind', 'AWS'],
+  twitter: 'https://x.com/_int_max',
+  skills: ['JavaScript', 'TypeScript', 'React', 'Next.js', 'Node.js', 'PostgreSQL', 'Tailwind', 'MongoDB', 'Python', 'C++', 'Java', 'Docker', 'FastApi', 'Express'],
 }
 
 export const goals = {

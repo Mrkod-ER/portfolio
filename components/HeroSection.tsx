@@ -1,9 +1,14 @@
 'use client'
 
-import { useEffect, useState, useRef, useCallback } from 'react'
-import { SystemMonitor } from '@/components/ui/SystemMonitor'
+import { useEffect, useState, useRef, useCallback, Suspense } from 'react'
+import dynamic from 'next/dynamic'
 import { aboutMe } from '@/data/profiles'
 import { Github, Linkedin, Mail, ArrowRight } from 'lucide-react'
+
+const HeroScene = dynamic(() => import('@/components/ui/HeroScene').then(mod => ({ default: mod.HeroScene })), {
+  ssr: false,
+  loading: () => <div className="w-full h-full" />,
+})
 
 // Scramble text hook — kept for interactive flair
 const useScramble = (text: string, speed: number = 40) => {
@@ -173,9 +178,11 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Right Column: System Monitor — takes 2/5 */}
+        {/* Right Column: 3D Visualization — takes 2/5 */}
         <div className={`lg:col-span-2 relative h-[500px] lg:h-[650px] hidden lg:flex items-center justify-center transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <SystemMonitor />
+          <Suspense fallback={<div className="w-full h-full" />}>
+            <HeroScene />
+          </Suspense>
         </div>
 
       </div>

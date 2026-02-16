@@ -122,11 +122,11 @@ export function Navbar() {
                                 />
                             </a>
                         ))}
-                        <ThemeToggle />
+                        {/* <ThemeToggle /> */}
                     </div>
 
                     {/* Mobile Menu Toggle */}
-                    <div className="flex items-center gap-4 md:hidden">
+                    {/* <div className="flex items-center gap-4 md:hidden">
                         <ThemeToggle />
                         <Button
                             variant="ghost"
@@ -136,7 +136,7 @@ export function Navbar() {
                         >
                             {isOpen ? <X size={24} /> : <Menu size={24} />}
                         </Button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
