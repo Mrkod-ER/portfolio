@@ -21,6 +21,7 @@ export interface Project {
   npm?: string
   version?: string
   license?: string
+  inProgress?: boolean
 }
 
 export const codeforces: CodeProfile = {
@@ -82,23 +83,23 @@ export const projects: Project[] = [
     license: 'MIT',
   },
   {
-  id: '2', // You can change this ID
-  name: 'Chat Onn - Real-time Communication Platform',
-  description: 'A full-featured Application for instant messaging, HD video calls, and group collaboration. Built with modern real-time infrastructure, secure authentication, and a premium responsive design.',
-  techStack: [
-    'Next.js 15',
-    'React 19',
-    'TypeScript',
-    'Tailwind CSS',
-    'Convex DB',
-    'Clerk Auth',
-    'Stream Video & Chat SDK', // Handles the video calling/messaging
-    'Shadcn UI'
-  ],
-  github: 'https://github.com/Mrkod-ER/Chat-Onn', // Replace with your actual repo
-  liveDemo: 'https://chat-onn.vercel.app/', // Replace with your actual deployed URL
-  category: 'web',
-  featured: true,
+    id: '2', // You can change this ID
+    name: 'Chat Onn - Real-time Communication Platform',
+    description: 'A full-featured Application for instant messaging, HD video calls, and group collaboration. Built with modern real-time infrastructure, secure authentication, and a premium responsive design.',
+    techStack: [
+      'Next.js 15',
+      'React 19',
+      'TypeScript',
+      'Tailwind CSS',
+      'Convex DB',
+      'Clerk Auth',
+      'Stream Video & Chat SDK', // Handles the video calling/messaging
+      'Shadcn UI'
+    ],
+    github: 'https://github.com/Mrkod-ER/Chat-Onn', // Replace with your actual repo
+    liveDemo: 'https://chat-onn.vercel.app/', // Replace with your actual deployed URL
+    category: 'web',
+    featured: true,
   },
   {
     id: '3',
@@ -109,16 +110,17 @@ export const projects: Project[] = [
     liveDemo: 'https://chat-app-brown-one.vercel.app/',
     category: 'web',
     featured: true,
-},
+  },
   {
     id: '4',
-    name: 'ML Image Classifier',
-    description: 'Deep learning model for image classification with 95% accuracy.',
-    techStack: ['Python', 'TensorFlow', 'Flask', 'OpenCV'],
-    github: 'https://github.com',
-    liveDemo: 'https://example.com',
+    name: 'Handwriting Transformers',
+    description: 'Transformer-based generative model for creating realistic, styled handwritten text images with arbitrary styles.',
+    techStack: ['Python', 'PyTorch', 'Transformers', 'Computer Vision'],
+    github: 'https://github.com/Mrkod-ER/Handwriting-Transformers',
+    liveDemo: '',
     category: 'ml',
-    featured: false,
+    featured: true,
+    inProgress: true,
   },
   {
     id: '5',
@@ -149,7 +151,7 @@ export const aboutMe = {
   location: 'Bareilly, UttarPradesh',
   email: 'abhisheksinghdev5@gmail.com',
   github: 'https://github.com/Mrkod-ER',
-  linkedin: 'https://linkedin.com',
+  linkedin: 'https://www.linkedin.com/in/abhishek-singh-bb2a1b293/',
   twitter: 'https://x.com/_int_max',
   skills: ['JavaScript', 'TypeScript', 'React', 'Next.js', 'Node.js', 'PostgreSQL', 'Tailwind', 'MongoDB', 'Python', 'C++', 'Java', 'Docker', 'FastApi', 'Express'],
 }

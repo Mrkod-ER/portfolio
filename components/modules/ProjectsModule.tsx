@@ -58,7 +58,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <article
       ref={ref}
-      className="h-full bg-white border-4 border-black p-6 shadow-hard transition-all duration-300 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none group relative overflow-hidden"
+      className={`h-full bg-white border-4 p-6 shadow-hard transition-all duration-300 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none group relative overflow-hidden ${project.inProgress ? 'border-neo-green' : 'border-black'
+        }`}
       style={{
         opacity: isInView ? 1 : 0,
         transform: isInView ? 'translateY(0)' : 'translateY(24px)',
@@ -77,9 +78,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 v{project.version}
               </span>
             )}
-            {project.featured && (
+            {project.featured && !project.inProgress && (
               <span className="text-xs font-mono font-bold uppercase text-black border-2 border-black px-2 py-0.5 bg-neo-pink">
                 Featured
+              </span>
+            )}
+            {project.inProgress && (
+              <span className="text-xs font-mono font-bold uppercase text-neo-white border-2 border-black px-2 py-0.5 bg-black animate-pulse">
+                SYSTEM PROCESSING...
               </span>
             )}
           </div>
