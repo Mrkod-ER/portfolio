@@ -147,7 +147,7 @@ export function CompetitiveProgrammingModule({ stats }: CompetitiveProgrammingMo
             };
         }
 
-        const tier = getRatingTier(rating, key);
+        const tier = getRatingTier(maxRating, key);
 
         return {
             key,
@@ -170,8 +170,8 @@ export function CompetitiveProgrammingModule({ stats }: CompetitiveProgrammingMo
 
     const totalProblems = platforms.reduce((sum, p) => sum + p.solved, 0);
     const totalContests = platforms.reduce((sum, p) => sum + p.contests, 0);
-    const bestRating = Math.max(...platforms.map(p => p.rating));
-    const avgRating = Math.round(platforms.filter(p => p.targetRating).reduce((s, p) => s + p.rating, 0) / 3);
+    const bestRating = Math.max(...platforms.map(p => p.maxRating));
+    const avgRating = Math.round(platforms.filter(p => p.targetRating).reduce((s, p) => s + p.maxRating, 0) / 3);
 
     const { ref: sectionRef, isInView: sectionVisible } = useInView({ threshold: 0.05 });
 
@@ -291,7 +291,7 @@ export function CompetitiveProgrammingModule({ stats }: CompetitiveProgrammingMo
                         <div className="flex-1">
                             <div className="flex items-end gap-2 mb-2">
                                 <span className="text-3xl font-display font-bold text-black group-hover:text-white tracking-tight">
-                                    {platform.rating}
+                                    {platform.maxRating}
                                 </span>
                                 {platform.targetRating && (
                                     <span className="text-xs text-black group-hover:text-white mb-2 font-mono font-bold">
@@ -316,14 +316,14 @@ export function CompetitiveProgrammingModule({ stats }: CompetitiveProgrammingMo
                                         <div
                                             className="h-full transition-all duration-1000 ease-out"
                                             style={{
-                                                width: `${Math.min((platform.rating / platform.targetRating) * 100, 100)}%`,
+                                                width: `${Math.min((platform.maxRating / platform.targetRating) * 100, 100)}%`,
                                                 backgroundColor: platform.color,
                                             }}
                                         />
                                     </div>
                                     <div className="flex justify-between text-[10px] text-black group-hover:text-white mt-1.5 font-mono font-bold">
-                                        <span>{Math.round((platform.rating / platform.targetRating) * 100)}%</span>
-                                        <span>{platform.targetRating - platform.rating} to go</span>
+                                        <span>{Math.round((platform.maxRating / platform.targetRating) * 100)}%</span>
+                                        <span>{platform.targetRating - platform.maxRating} to go</span>
                                     </div>
                                 </div>
                             )}
@@ -490,7 +490,7 @@ export function CompetitiveProgrammingModule({ stats }: CompetitiveProgrammingMo
                                     key={p.key}
                                     className="p-2 text-center bg-white border-2 border-black shadow-hard-sm"
                                 >
-                                    <p className="text-lg font-bold" style={{ color: p.color }}>{p.rating}</p>
+                                    <p className="text-lg font-bold" style={{ color: p.color }}>{p.maxRating}</p>
                                     <p className="text-[8px] text-black uppercase tracking-wider font-bold">{p.name.slice(0, 4)}</p>
                                 </div>
                             ))}
