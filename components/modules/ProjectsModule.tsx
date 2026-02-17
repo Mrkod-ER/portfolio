@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Github, ExternalLink, Code2, Smartphone, Cpu, Terminal } from 'lucide-react'
+import { Github, ExternalLink, Code2, Smartphone, Cpu, Terminal, Package } from 'lucide-react'
 import { projects, Project } from '@/data/profiles'
 import { AsymmetricGrid, AsymmetricGridItem } from '@/components/ui/asymmetric-grid'
 import { useInView } from '@/hooks/useInView'
@@ -73,15 +73,29 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             {categoryIcons[project.category]}
             {project.category}
           </span>
-          {project.featured && (
-            <span className="text-[10px] uppercase tracking-wider text-zinc-500 border border-zinc-700 px-2 py-0.5">
-              Featured
-            </span>
-          )}
+          <div className="flex items-center gap-2">
+            {project.version && (
+              <span className="text-[10px] uppercase tracking-wider text-zinc-500 border border-zinc-700/50 px-1.5 py-0.5">
+                v{project.version}
+              </span>
+            )}
+            {project.featured && (
+              <span className="text-[10px] uppercase tracking-wider text-zinc-500 border border-zinc-700 px-2 py-0.5">
+                Featured
+              </span>
+            )}
+          </div>
         </div>
         <h3 className="text-lg font-medium text-zinc-100 group-hover:text-zinc-50 transition-colors">
           {project.name}
         </h3>
+
+        {project.license && (
+          <span className="text-[10px] text-zinc-600 mt-1 block">
+            License: {project.license}
+          </span>
+        )}
+
         <p className="text-zinc-500 text-sm leading-relaxed mt-2 flex-1">
           {project.description}
         </p>
@@ -96,6 +110,17 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           ))}
         </div>
         <div className="flex gap-3 mt-5 pt-4 border-t border-zinc-800">
+          {project.npm && (
+            <a
+              href={project.npm}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
+            >
+              <Package className="w-3.5 h-3.5" />
+              NPM
+            </a>
+          )}
           {project.github && (
             <a
               href={project.github}

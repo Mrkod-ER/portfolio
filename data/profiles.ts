@@ -18,6 +18,9 @@ export interface Project {
   liveDemo?: string
   category: 'web' | 'mobile' | 'ml' | 'tools'
   featured: boolean
+  npm?: string
+  version?: string
+  license?: string
 }
 
 export const codeforces: CodeProfile = {
@@ -67,13 +70,16 @@ export const geeksforgeeks: CodeProfile = {
 export const projects: Project[] = [
   {
     id: '1',
-    name: 'competetive-programming-stats Extractor module',
-    description: 'Real-time chat application with AI-powered responses and message history.',
-    techStack: ['Typescript', 'javascript', 'Node.js'],
-    github: 'https://github.com',
-    liveDemo: 'https://example.com',
+    name: 'Competitive-Programming-Stats Extractor Module',
+    description: 'A unified TypeScript SDK to fetch competitive programming stats from Codeforces, LeetCode, CodeChef, and GeeksforGeeks. Features parallel requests, error safety, and a CLI tool for terminal usage.',
+    techStack: ['TypeScript', 'Node.js', 'Next.js', 'React'],
+    github: 'https://github.com/mrkod-er/profile-stats',
+    liveDemo: 'https://profile-stats-docs.vercel.app',
     category: 'web',
     featured: true,
+    npm: 'https://www.npmjs.com/package/profile-stats',
+    version: '0.2.1',
+    license: 'MIT',
   },
   {
     id: '2',
