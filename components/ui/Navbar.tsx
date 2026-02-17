@@ -19,144 +19,112 @@ export function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState('');
 
-    // Track scroll for glass effect + active section
     useEffect(() => {
-        const sectionIds = ['projects', 'competitive-programming', 'about'];
-
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
 
-            // Determine active section (bottom-up priority)
-            const scrollPos = window.scrollY + 120;
-            let current = '';
+            const sections = ['projects', 'competitive-programming', 'about'];
+            const scrollPos = window.scrollY + 100;
 
-            for (const id of sectionIds) {
-                const el = document.getElementById(id);
-                if (el && el.offsetTop <= scrollPos) {
-                    current = id;
-                    break;
+            for (const section of sections) {
+                const element = document.getElementById(section);
+                if (element && element.offsetTop <= scrollPos) {
+                    setActiveSection(section);
+                    return;
                 }
             }
-
-            // If near top, no active section
-            if (window.scrollY < 100) current = '';
-
-            setActiveSection(current);
+            setActiveSection('');
         };
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
-    const handleLinkClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         e.preventDefault();
         setIsOpen(false);
 
         if (href === '#') {
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-            const element = document.querySelector(href);
-            if (element) {
-                const offset = 80;
-                const bodyRect = document.body.getBoundingClientRect().top;
-                const elementRect = element.getBoundingClientRect().top;
-                const elementPosition = elementRect - bodyRect;
-                const offsetPosition = elementPosition - offset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
+            return;
         }
-    }, []);
 
-    const isActive = (href: string) => {
-        if (href === '#') return activeSection === '';
-        return `#${activeSection}` === href;
+        const element = document.querySelector(href);
+        if (element) {
+            const offset = 80;
+            const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({
+                top: elementPosition - offset,
+                behavior: 'smooth'
+            });
+        }
     };
 
     return (
-        <nav
-            className={cn(
-                'fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent',
-                scrolled
-                    ? 'bg-background/80 backdrop-blur-md border-border shadow-sm py-2'
-                    : 'bg-transparent py-4'
-            )}
-        >
+        <nav className={cn(
+            'fixed top-0 left-0 right-0 z-50 transition-all duration-200 border-b-2 border-black',
+            'bg-neo-white'
+        )}>
             <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-                <div className="flex items-center justify-between">
-                    {/* Logo */}
+                <div className="flex items-center justify-between h-20">
+                    {/* Brand */}
                     <Link
                         href="/"
-                        className="font-display text-xl font-bold tracking-tight hover:opacity-80 transition-opacity uppercase"
-                        onClick={(e) => handleLinkClick(e, '#')}
+                        onClick={(e) => scrollToSection(e, '#')}
+                        className="font-display text-4xl font-bold uppercase tracking-tight hover:text-neo-blue transition-colors"
                     >
-                        Portfolio
+                        ABHISHEK.EXE
                     </Link>
 
-                    {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center gap-6">
+                    {/* Desktop Items */}
+                    <div className="hidden md:flex items-center gap-8">
                         {navItems.map((item) => (
-                            <a
+                            <Link
                                 key={item.label}
                                 href={item.href}
-                                onClick={(e) => handleLinkClick(e, item.href)}
-                                className={cn(
-                                    'font-body text-xs font-medium uppercase tracking-wider transition-colors relative py-1',
-                                    isActive(item.href)
-                                        ? 'text-zinc-100'
-                                        : 'text-muted-foreground hover:text-primary'
-                                )}
+                                onClick={(e) => scrollToSection(e, item.href)}
+                                className="font-mono text-sm font-bold uppercase tracking-wider hover:bg-black hover:text-neo-white px-2 py-1 transition-all"
                             >
                                 {item.label}
-                                {/* Active indicator */}
-                                <span
-                                    className={cn(
-                                        'absolute bottom-0 left-0 right-0 h-px bg-zinc-100 transition-all duration-300',
-                                        isActive(item.href) ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
-                                    )}
-                                />
-                            </a>
+                            </Link>
                         ))}
-                        {/* <ThemeToggle /> */}
+                        <ThemeToggle />
+                        <a
+                            href="#contact"
+                            onClick={(e) => scrollToSection(e, '#contact')}
+                            className="bg-neo-yellow border-2 border-black px-6 py-2 font-mono text-sm font-bold uppercase shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all text-black"
+                        >
+                            Connect
+                        </a>
                     </div>
 
-                    {/* Mobile Menu Toggle */}
-                    {/* <div className="flex items-center gap-4 md:hidden">
+                    {/* Mobile Menu Button */}
+                    <div className="md:hidden flex items-center gap-4">
                         <ThemeToggle />
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={toggleMenu}
-                            aria-label="Toggle menu"
+                        <button
+                            onClick={() => setIsOpen(!isOpen)}
+                            className="p-2 border-2 border-black bg-neo-white shadow-hard active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all"
                         >
                             {isOpen ? <X size={24} /> : <Menu size={24} />}
-                        </Button>
-                    </div> */}
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            {/* Mobile Menu Overlay */}
+            {/* Mobile Menu */}
             {isOpen && (
-                <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-lg border-b border-border p-4 shadow-lg animate-in slide-in-from-top-5">
-                    <div className="flex flex-col space-y-4">
+                <div className="md:hidden border-t-2 border-black bg-neo-white p-4 absolute w-full shadow-hard-lg">
+                    <div className="flex flex-col gap-4">
                         {navItems.map((item) => (
                             <a
                                 key={item.label}
                                 href={item.href}
-                                onClick={(e) => handleLinkClick(e, item.href)}
-                                className={cn(
-                                    'text-base font-medium py-2 px-4 transition-colors',
-                                    isActive(item.href)
-                                        ? 'text-zinc-100 bg-zinc-800/40'
-                                        : 'text-foreground hover:bg-muted'
-                                )}
+                                onClick={(e) => scrollToSection(e, item.href)}
+                                className="font-mono text-lg font-bold uppercase border-2 border-black p-3 shadow-hard-sm active:shadow-none active:translate-x-1 active:translate-y-1 transition-all hover:bg-neo-yellow"
                             >
-                                {item.label}
+                                /{item.label}
                             </a>
                         ))}
                     </div>

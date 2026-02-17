@@ -11,8 +11,8 @@ export const revalidate = 43200 // 12 hours
 
 function SectionDivider() {
   return (
-    <div className="flex items-center justify-center py-4">
-      <div className="h-px w-full max-w-xs bg-gradient-to-r from-transparent via-zinc-700/50 to-transparent" />
+    <div className="flex items-center justify-center py-8">
+      <div className="h-1 w-full max-w-xs bg-black" />
     </div>
   )
 }

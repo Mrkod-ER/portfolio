@@ -82,25 +82,34 @@ export const projects: Project[] = [
     license: 'MIT',
   },
   {
-    id: '2',
-    name: 'Data Visualization Dashboard',
-    description: 'Interactive dashboard with real-time charts and analytics for business metrics.',
-    techStack: ['React', 'D3.js', 'Node.js', 'PostgreSQL'],
-    github: 'https://github.com',
-    liveDemo: 'https://example.com',
-    category: 'web',
-    featured: true,
+  id: '2', // You can change this ID
+  name: 'Chat Onn - Real-time Communication Platform',
+  description: 'A full-featured Application for instant messaging, HD video calls, and group collaboration. Built with modern real-time infrastructure, secure authentication, and a premium responsive design.',
+  techStack: [
+    'Next.js 15',
+    'React 19',
+    'TypeScript',
+    'Tailwind CSS',
+    'Convex DB',
+    'Clerk Auth',
+    'Stream Video & Chat SDK', // Handles the video calling/messaging
+    'Shadcn UI'
+  ],
+  github: 'https://github.com/Mrkod-ER/Chat-Onn', // Replace with your actual repo
+  liveDemo: 'https://chat-onn.vercel.app/', // Replace with your actual deployed URL
+  category: 'web',
+  featured: true,
   },
   {
     id: '3',
-    name: 'Mobile Weather App',
-    description: 'Cross-platform weather application with location tracking and forecasts.',
-    techStack: ['React Native', 'Expo', 'Weather API', 'Redux'],
-    github: 'https://github.com',
-    liveDemo: 'https://example.com',
-    category: 'mobile',
-    featured: false,
-  },
+    name: 'Chat App',
+    description: 'A real-time chat application built with Next.js, Convex, Clerk, and WebSockets—offering fast, secure, and modern messaging.',
+    techStack: ['Next.js', 'Convex', 'Clerk', 'React', 'Tailwind CSS', 'TypeScript'],
+    github: 'https://github.com/Mrkod-ER/chat-app',
+    liveDemo: 'https://chat-app-brown-one.vercel.app/',
+    category: 'web',
+    featured: true,
+},
   {
     id: '4',
     name: 'ML Image Classifier',

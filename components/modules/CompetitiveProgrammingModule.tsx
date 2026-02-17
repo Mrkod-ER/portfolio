@@ -15,7 +15,7 @@ const PLATFORM_CONFIG = {
     codeforces: {
         name: 'Codeforces',
         icon: '⚡',
-        color: '#3b82f6',
+        color: '#FF2A2A', // Neo Red
         link: 'https://codeforces.com/profile/',
         username: 'koderabhishek',
         staticData: codeforces,
@@ -25,7 +25,7 @@ const PLATFORM_CONFIG = {
     leetcode: {
         name: 'LeetCode',
         icon: '💻',
-        color: '#f97316',
+        color: '#FF9F1C', // Neo Orange
         link: 'https://leetcode.com/',
         username: 'Mrkod-ER',
         staticData: leetcode,
@@ -35,7 +35,7 @@ const PLATFORM_CONFIG = {
     codechef: {
         name: 'CodeChef',
         icon: '🍲',
-        color: '#a16207',
+        color: '#A855F7', // Neo Purple
         link: 'https://www.codechef.com/users/',
         username: 'king_koder',
         staticData: codechef,
@@ -45,7 +45,7 @@ const PLATFORM_CONFIG = {
     gfg: {
         name: 'GeeksforGeeks',
         icon: '🧑‍💻',
-        color: '#22c55e',
+        color: '#33FF57', // Neo Green
         link: 'https://www.geeksforgeeks.org/user/',
         username: 'koderabhishek',
         staticData: geeksforgeeks,
@@ -56,30 +56,31 @@ const PLATFORM_CONFIG = {
 
 function getRatingTier(rating: number, platform: string): { name: string; color: string } {
     if (platform === 'codeforces') {
-        if (rating >= 2400) return { name: 'Grandmaster', color: '#ff0000' }
-        if (rating >= 2100) return { name: 'Master', color: '#ff8c00' }
-        if (rating >= 1900) return { name: 'Candidate Master', color: '#aa00aa' }
-        if (rating >= 1600) return { name: 'Expert', color: '#0000ff' }
-        if (rating >= 1400) return { name: 'Specialist', color: '#03a89e' }
-        if (rating >= 1200) return { name: 'Pupil', color: '#008000' }
+        if (rating >= 2400) return { name: 'Grandmaster', color: '#FF2A2A' }
+        if (rating >= 2100) return { name: 'Master', color: '#FF9F1C' }
+        if (rating >= 1900) return { name: 'Candidate Master', color: '#A855F7' }
+        if (rating >= 1600) return { name: 'Expert', color: '#3B82F6' }
+        if (rating >= 1400) return { name: 'Specialist', color: '#33FF57' }
+        if (rating >= 1200) return { name: 'Pupil', color: '#121212' }
         return { name: 'Newbie', color: '#808080' }
     }
+    // ... (Keep other platform logic similar but maybe adjust colors to Neo palette if needed, or keep standard)
     if (platform === 'leetcode') {
-        if (rating >= 2400) return { name: 'Guardian', color: '#ff375f' }
-        if (rating >= 2000) return { name: 'Knight', color: '#ff9800' }
-        if (rating >= 1600) return { name: 'Top Solver', color: '#2196f3' }
-        return { name: 'Solver', color: '#4caf50' }
+        if (rating >= 2400) return { name: 'Guardian', color: '#FF2A2A' }
+        if (rating >= 2000) return { name: 'Knight', color: '#FF9F1C' }
+        if (rating >= 1600) return { name: 'Top Solver', color: '#3B82F6' }
+        return { name: 'Solver', color: '#33FF57' }
     }
     if (platform === 'codechef') {
-        if (rating >= 2500) return { name: '7★', color: '#ff0000' }
-        if (rating >= 2200) return { name: '6★', color: '#ff8c00' }
-        if (rating >= 2000) return { name: '5★', color: '#aa00aa' }
-        if (rating >= 1800) return { name: '4★', color: '#0000ff' }
-        if (rating >= 1600) return { name: '3★', color: '#03a89e' }
-        if (rating >= 1400) return { name: '2★', color: '#008000' }
+        if (rating >= 2500) return { name: '7★', color: '#FF2A2A' }
+        if (rating >= 2200) return { name: '6★', color: '#FF9F1C' }
+        if (rating >= 2000) return { name: '5★', color: '#A855F7' }
+        if (rating >= 1800) return { name: '4★', color: '#3B82F6' }
+        if (rating >= 1600) return { name: '3★', color: '#33FF57' }
+        if (rating >= 1400) return { name: '2★', color: '#33FF57' }
         return { name: '1★', color: '#808080' }
     }
-    return { name: 'Active', color: '#22c55e' }
+    return { name: 'Active', color: '#33FF57' }
 }
 
 interface CompetitiveProgrammingModuleProps {
@@ -175,11 +176,11 @@ export function CompetitiveProgrammingModule({ stats }: CompetitiveProgrammingMo
     const { ref: sectionRef, isInView: sectionVisible } = useInView({ threshold: 0.05 });
 
     return (
-        <div className="w-full" id="competitive-programming">
+        <div className="w-full py-20" id="competitive-programming">
             {/* Bento Grid Layout */}
             <div
                 ref={sectionRef}
-                className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-3 auto-rows-[100px]"
+                className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-6 auto-rows-[100px]"
                 style={{
                     opacity: sectionVisible ? 1 : 0,
                     transform: sectionVisible ? 'translateY(0)' : 'translateY(30px)',
@@ -188,72 +189,67 @@ export function CompetitiveProgrammingModule({ stats }: CompetitiveProgrammingMo
             >
 
                 {/* Title Card */}
-                <div className="col-span-4 lg:col-span-4 row-span-2 relative overflow-hidden border border-zinc-800 bg-zinc-950/40 p-6 flex flex-col justify-between group hover:border-zinc-700 transition-all duration-300">
+                <div className="col-span-4 lg:col-span-4 row-span-2 relative overflow-hidden border-4 border-black bg-neo-white p-6 flex flex-col justify-between group shadow-hard hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none transition-all duration-300">
                     <div>
-                        <p className="text-[10px] text-zinc-500 mb-3 flex items-center gap-2 uppercase tracking-wider font-medium">
-                            <span className="h-1.5 w-1.5 bg-emerald-500 animate-pulse" />
+                        <p className="text-xs text-black mb-3 flex items-center gap-2 uppercase tracking-wider font-mono font-bold">
+                            <span className="h-2 w-2 bg-neo-red animate-pulse border border-black" />
                             Live Dashboard
                         </p>
-                        <h1 className="text-2xl md:text-3xl font-bold leading-tight text-zinc-100">
+                        <h1 className="text-3xl md:text-4xl font-display font-bold uppercase leading-tight text-black">
                             Competitive<br />Programming
                         </h1>
                     </div>
-                    <div className="space-y-2">
-                        <p className="text-xs text-zinc-500 font-medium">
+                    <div className="space-y-4">
+                        <p className="text-xs text-black font-mono font-bold uppercase">
                             Tracking progress across
                         </p>
-                        <div className="flex gap-3 text-zinc-500">
+                        <div className="flex gap-4 text-black">
                             {platforms.map(p => (
-                                <span key={p.key} className="text-lg hover:scale-110 hover:text-zinc-100 transition-all duration-200 cursor-default" title={p.name}>{p.icon}</span>
+                                <span key={p.key} className="text-2xl hover:scale-110 transition-transform duration-200 cursor-default" title={p.name}>{p.icon}</span>
                             ))}
                         </div>
-                    </div>
-                    {/* Subtle decorative SVG */}
-                    <div className="absolute top-0 right-0 p-6 opacity-[0.03] pointer-events-none">
-                        <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" >
-                            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-                        </svg>
                     </div>
                 </div>
 
                 {/* Total Problems - Feature Card */}
-                <div className="col-span-2 md:col-span-4 lg:col-span-4 row-span-2 relative overflow-hidden border border-zinc-800 bg-zinc-950/40 p-6 flex flex-col justify-center items-center text-center group hover:border-zinc-700 transition-all duration-300">
-                    <p className="text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-100 tracking-tight">
+                <div className="col-span-2 md:col-span-4 lg:col-span-4 row-span-2 relative overflow-hidden border-4 border-black bg-neo-yellow p-6 flex flex-col justify-center items-center text-center shadow-hard hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none transition-all duration-300">
+                    <p className="text-6xl md:text-7xl font-display font-bold text-black tracking-tighter">
                         {totalProblems}
                     </p>
-                    <p className="text-xs text-zinc-500 mt-2 uppercase tracking-wider font-medium">Total Problems Solved</p>
-                    <div className="flex gap-4 mt-4">
+                    <p className="text-sm text-black mt-2 uppercase tracking-widest font-mono font-bold bg-white px-2 border-2 border-black">Total Solved</p>
+
+                    <div className="flex gap-4 mt-6">
                         {platforms.map(p => (
-                            <div key={p.key} className="flex items-center gap-1.5 text-[11px] text-zinc-500">
+                            <div key={p.key} className="flex items-center gap-2 text-xs text-black font-bold font-mono">
                                 <span
-                                    className="w-2 h-2"
+                                    className="w-3 h-3 border border-black"
                                     style={{ backgroundColor: p.color }}
                                 />
-                                <span className="font-medium">{p.solved}</span>
+                                <span>{p.solved}</span>
                             </div>
                         ))}
                     </div>
                 </div>
 
                 {/* Stat Cards Row */}
-                <div className="col-span-2 row-span-1 border border-zinc-800 bg-zinc-950/40 p-4 flex flex-col justify-center items-center text-center hover:border-zinc-700 transition-all duration-300">
-                    <p className="text-2xl md:text-3xl font-bold text-zinc-100 tracking-tight">{totalContests}</p>
-                    <p className="text-[10px] text-zinc-500 uppercase tracking-wider font-medium mt-1">Contests</p>
+                <div className="col-span-2 row-span-1 border-4 border-black bg-white p-4 flex flex-col justify-center items-center text-center shadow-hard hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none transition-all duration-300">
+                    <p className="text-3xl font-display font-bold text-black">{totalContests}</p>
+                    <p className="text-[10px] text-black uppercase tracking-wider font-mono font-bold mt-1">Contests</p>
                 </div>
 
-                <div className="col-span-2 row-span-1 border border-zinc-800 bg-zinc-950/40 p-4 flex flex-col justify-center items-center text-center hover:border-zinc-700 transition-all duration-300">
-                    <p className="text-2xl md:text-3xl font-bold text-zinc-100 tracking-tight">{bestRating}</p>
-                    <p className="text-[10px] text-zinc-500 uppercase tracking-wider font-medium mt-1">Best Rating</p>
+                <div className="col-span-2 row-span-1 border-4 border-black bg-white p-4 flex flex-col justify-center items-center text-center shadow-hard hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none transition-all duration-300">
+                    <p className="text-3xl font-display font-bold text-black">{bestRating}</p>
+                    <p className="text-[10px] text-black uppercase tracking-wider font-mono font-bold mt-1">Best Rating</p>
                 </div>
 
-                <div className="col-span-2 row-span-1 border border-zinc-800 bg-zinc-950/40 p-4 flex flex-col justify-center items-center text-center hover:border-zinc-700 transition-all duration-300">
-                    <p className="text-2xl md:text-3xl font-bold text-zinc-100 tracking-tight">{avgRating}</p>
-                    <p className="text-[10px] text-zinc-500 uppercase tracking-wider font-medium mt-1">Avg Rating</p>
+                <div className="col-span-2 row-span-1 border-4 border-black bg-white p-4 flex flex-col justify-center items-center text-center shadow-hard hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none transition-all duration-300">
+                    <p className="text-3xl font-display font-bold text-black">{avgRating}</p>
+                    <p className="text-[10px] text-black uppercase tracking-wider font-mono font-bold mt-1">Avg Rating</p>
                 </div>
 
-                <div className="col-span-2 row-span-1 border border-zinc-800 bg-zinc-950/40 p-4 flex flex-col justify-center items-center text-center hover:border-zinc-700 transition-all duration-300">
-                    <p className="text-2xl md:text-3xl font-bold text-zinc-100 tracking-tight">4</p>
-                    <p className="text-[10px] text-zinc-500 uppercase tracking-wider font-medium mt-1">Platforms</p>
+                <div className="col-span-2 row-span-1 border-4 border-black bg-white p-4 flex flex-col justify-center items-center text-center shadow-hard hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none transition-all duration-300">
+                    <p className="text-3xl font-display font-bold text-black">4</p>
+                    <p className="text-[10px] text-black uppercase tracking-wider font-mono font-bold mt-1">Platforms</p>
                 </div>
 
                 {/* Platform Cards */}
@@ -263,35 +259,28 @@ export function CompetitiveProgrammingModule({ stats }: CompetitiveProgrammingMo
                         href={platform.username ? `${platform.link}${platform.username}` : platform.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="col-span-4 md:col-span-4 lg:col-span-3 row-span-3 relative overflow-hidden border border-zinc-800 bg-zinc-950/40 p-5 flex flex-col transition-all duration-300 hover:bg-zinc-950/70 hover:border-zinc-700 group"
+                        className="col-span-4 md:col-span-4 lg:col-span-3 row-span-3 relative overflow-hidden border-4 border-black bg-white p-5 flex flex-col transition-all duration-300 hover:bg-neo-blue hover:text-white shadow-hard hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] group"
                     >
-                        {/* Platform accent line */}
-                        <div
-                            className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                            style={{ backgroundColor: platform.color }}
-                        />
-
                         {/* Header */}
                         <div className="flex items-start justify-between mb-4">
                             <div className="flex items-center gap-3">
                                 <div
-                                    className="w-10 h-10 flex items-center justify-center text-xl border border-zinc-800 bg-zinc-900/50 group-hover:border-zinc-700 transition-colors"
+                                    className="w-10 h-10 flex items-center justify-center text-xl border-2 border-black bg-neo-white text-black group-hover:bg-white transition-colors shadow-hard-sm"
                                 >
                                     {platform.icon}
                                 </div>
                                 <div>
-                                    <h3 className="font-semibold text-zinc-200 group-hover:text-zinc-50 transition-colors text-sm">
+                                    <h3 className="font-display font-bold uppercase text-black group-hover:text-white transition-colors text-sm">
                                         {platform.name}
                                     </h3>
-                                    <p className="text-[11px] text-zinc-500">
+                                    <p className="text-[11px] text-black group-hover:text-white font-mono">
                                         @{platform.username || 'username'}
                                     </p>
                                 </div>
                             </div>
                             <div className="flex flex-col items-end gap-1">
                                 {platform.isLive && (
-                                    <span className="flex items-center gap-1.5 text-[9px] font-medium text-emerald-500 bg-emerald-500/10 px-2 py-0.5 tracking-wider">
-                                        <span className="h-1 w-1 bg-emerald-500 animate-pulse" />
+                                    <span className="flex items-center gap-1.5 text-[9px] font-bold text-black bg-neo-green border-2 border-black px-2 py-0.5 tracking-wider uppercase">
                                         LIVE
                                     </span>
                                 )}
@@ -300,12 +289,12 @@ export function CompetitiveProgrammingModule({ stats }: CompetitiveProgrammingMo
 
                         {/* Rating Section */}
                         <div className="flex-1">
-                            <div className="flex items-end gap-2 mb-1">
-                                <span className="text-2xl font-bold text-zinc-100 tracking-tight">
+                            <div className="flex items-end gap-2 mb-2">
+                                <span className="text-3xl font-display font-bold text-black group-hover:text-white tracking-tight">
                                     {platform.rating}
                                 </span>
                                 {platform.targetRating && (
-                                    <span className="text-xs text-zinc-500 mb-1.5">
+                                    <span className="text-xs text-black group-hover:text-white mb-2 font-mono font-bold">
                                         / {platform.targetRating}
                                     </span>
                                 )}
@@ -314,32 +303,25 @@ export function CompetitiveProgrammingModule({ stats }: CompetitiveProgrammingMo
                             {/* Tier Badge */}
                             <div className="flex items-center gap-2 mb-4">
                                 <span
-                                    className="px-2.5 py-0.5 text-[10px] font-semibold tracking-wider uppercase border bg-zinc-900/60"
-                                    style={{ borderColor: `${platform.tier.color}30`, color: platform.tier.color }}
+                                    className="px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase border-2 border-black bg-neo-white text-black shadow-hard-sm"
                                 >
                                     {platform.tier.name}
                                 </span>
-                                {platform.maxRating > platform.rating && (
-                                    <span className="text-[10px] text-zinc-500">
-                                        Peak: {platform.maxRating}
-                                    </span>
-                                )}
                             </div>
 
                             {/* Progress Bar */}
                             {platform.targetRating && (
                                 <div className="mb-4">
-                                    <div className="h-1 w-full bg-zinc-800/80 overflow-hidden">
+                                    <div className="h-3 w-full bg-white border-2 border-black overflow-hidden shadow-hard-sm">
                                         <div
                                             className="h-full transition-all duration-1000 ease-out"
                                             style={{
                                                 width: `${Math.min((platform.rating / platform.targetRating) * 100, 100)}%`,
                                                 backgroundColor: platform.color,
-                                                boxShadow: `0 0 8px ${platform.color}40`,
                                             }}
                                         />
                                     </div>
-                                    <div className="flex justify-between text-[10px] text-zinc-500 mt-1.5 font-medium">
+                                    <div className="flex justify-between text-[10px] text-black group-hover:text-white mt-1.5 font-mono font-bold">
                                         <span>{Math.round((platform.rating / platform.targetRating) * 100)}%</span>
                                         <span>{platform.targetRating - platform.rating} to go</span>
                                     </div>
@@ -349,13 +331,13 @@ export function CompetitiveProgrammingModule({ stats }: CompetitiveProgrammingMo
                             {/* Stats Grid - Hide for LeetCode to save space */}
                             {platform.key !== 'leetcode' && (
                                 <div className="grid grid-cols-2 gap-2 mb-3">
-                                    <div className="p-2.5 text-center bg-zinc-900/40 border border-zinc-800/50 hover:border-zinc-700/50 transition-colors">
-                                        <p className="text-lg font-semibold text-zinc-100 tracking-tight">{platform.solved}</p>
-                                        <p className="text-[8px] text-zinc-500 uppercase tracking-wider font-medium">Solved</p>
+                                    <div className="p-2.5 text-center bg-white border-2 border-black group-hover:bg-black group-hover:text-white transition-colors shadow-hard-sm">
+                                        <p className="text-lg font-bold tracking-tight">{platform.solved}</p>
+                                        <p className="text-[8px] uppercase tracking-wider font-bold">Solved</p>
                                     </div>
-                                    <div className="p-2.5 text-center bg-zinc-900/40 border border-zinc-800/50 hover:border-zinc-700/50 transition-colors">
-                                        <p className="text-lg font-semibold text-zinc-100 tracking-tight">{platform.contests || '—'}</p>
-                                        <p className="text-[8px] text-zinc-500 uppercase tracking-wider font-medium">Contests</p>
+                                    <div className="p-2.5 text-center bg-white border-2 border-black group-hover:bg-black group-hover:text-white transition-colors shadow-hard-sm">
+                                        <p className="text-lg font-bold tracking-tight">{platform.contests || '—'}</p>
+                                        <p className="text-[8px] uppercase tracking-wider font-bold">Contests</p>
                                     </div>
                                 </div>
                             )}
@@ -363,47 +345,36 @@ export function CompetitiveProgrammingModule({ stats }: CompetitiveProgrammingMo
                             {/* LeetCode Special Compact Grid */}
                             {platform.key === 'leetcode' && platform.solvedBreakdown && (
                                 <div className="grid grid-cols-4 gap-1.5 mb-3">
-                                    <div className="text-center py-2 bg-zinc-900/40 border border-zinc-800/50 hover:border-zinc-700/50 transition-colors flex flex-col justify-center">
-                                        <p className="text-xs font-bold text-zinc-100">{platform.contests}</p>
-                                        <p className="text-[6px] text-zinc-500 uppercase tracking-wider font-medium">Contests</p>
+                                    <div className="text-center py-1 bg-white border-2 border-black flex flex-col justify-center shadow-hard-sm">
+                                        <p className="text-xs font-bold text-black">{platform.contests}</p>
+                                        <p className="text-[6px] text-black uppercase tracking-wider font-bold">Contests</p>
                                     </div>
-                                    <div className="text-center py-2 bg-zinc-900/40 border border-zinc-800/50 hover:border-emerald-500/20 transition-colors flex flex-col justify-center">
-                                        <p className="text-xs font-bold text-emerald-400">{platform.solvedBreakdown.easy}</p>
-                                        <p className="text-[6px] text-zinc-500 uppercase tracking-wider font-medium">Easy</p>
+                                    <div className="text-center py-1 bg-white border-2 border-black flex flex-col justify-center shadow-hard-sm">
+                                        <p className="text-xs font-bold text-neo-green">{platform.solvedBreakdown.easy}</p>
+                                        <p className="text-[6px] text-black uppercase tracking-wider font-bold">Easy</p>
                                     </div>
-                                    <div className="text-center py-2 bg-zinc-900/40 border border-zinc-800/50 hover:border-amber-500/20 transition-colors flex flex-col justify-center">
-                                        <p className="text-xs font-bold text-amber-400">{platform.solvedBreakdown.medium}</p>
-                                        <p className="text-[6px] text-zinc-500 uppercase tracking-wider font-medium">Med</p>
+                                    <div className="text-center py-1 bg-white border-2 border-black flex flex-col justify-center shadow-hard-sm">
+                                        <p className="text-xs font-bold text-neo-orange">{platform.solvedBreakdown.medium}</p>
+                                        <p className="text-[6px] text-black uppercase tracking-wider font-bold">Med</p>
                                     </div>
-                                    <div className="text-center py-2 bg-zinc-900/40 border border-zinc-800/50 hover:border-red-500/20 transition-colors flex flex-col justify-center">
-                                        <p className="text-xs font-bold text-red-400">{platform.solvedBreakdown.hard}</p>
-                                        <p className="text-[6px] text-zinc-500 uppercase tracking-wider font-medium">Hard</p>
+                                    <div className="text-center py-1 bg-white border-2 border-black flex flex-col justify-center shadow-hard-sm">
+                                        <p className="text-xs font-bold text-neo-red">{platform.solvedBreakdown.hard}</p>
+                                        <p className="text-[6px] text-black uppercase tracking-wider font-bold">Hard</p>
                                     </div>
                                 </div>
                             )}
 
-                            {/* Additional Rankings */}
-                            {(platform.globalRanking || platform.countryRanking) && (
-                                <div className="mt-auto flex gap-3 text-[10px] text-zinc-500 font-medium">
-                                    {platform.globalRanking && (
-                                        <span>🌍 #{platform.globalRanking.toLocaleString()}</span>
-                                    )}
-                                    {platform.countryRanking && (
-                                        <span>🇮🇳 #{platform.countryRanking.toLocaleString()}</span>
-                                    )}
-                                </div>
-                            )}
                         </div>
 
                         {/* Footer */}
                         {!platform.solvedBreakdown && !platform.globalRanking && !platform.countryRanking && (
-                            <div className="pt-3 mt-auto border-t border-zinc-800/50 flex items-center justify-between">
-                                <p className="text-[10px] text-zinc-500">
+                            <div className="pt-3 mt-auto border-t-2 border-black flex items-center justify-between">
+                                <p className="text-[10px] text-black group-hover:text-white font-mono font-bold">
                                     {platform.description}
                                 </p>
                             </div>
                         )}
-                        <div className="absolute top-5 right-5 text-zinc-800 group-hover:text-zinc-500 transition-all duration-300 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                        <div className="absolute top-5 right-5 text-black group-hover:text-white transition-all duration-300 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 font-bold">
                             ↗
                         </div>
                     </a>
@@ -411,21 +382,21 @@ export function CompetitiveProgrammingModule({ stats }: CompetitiveProgrammingMo
 
                 {/* Problems Solved */}
                 <div
-                    className="col-span-4 md:col-span-8 lg:col-span-6 row-span-3 relative overflow-hidden border border-zinc-800 bg-zinc-950/40 p-5 flex flex-col transition-all duration-300 hover:border-zinc-700 group"
+                    className="col-span-4 md:col-span-8 lg:col-span-6 row-span-3 relative overflow-hidden border-4 border-black bg-neo-pink p-5 flex flex-col transition-all duration-300 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none shadow-hard group"
                 >
                     {/* Header */}
                     <div className="flex items-start justify-between mb-4">
                         <div className="flex items-center gap-3">
                             <div
-                                className="w-10 h-10 flex items-center justify-center text-xl border border-zinc-800 bg-zinc-900/50"
+                                className="w-10 h-10 flex items-center justify-center text-xl border-2 border-black bg-white shadow-hard-sm"
                             >
                                 🎯
                             </div>
                             <div>
-                                <h3 className="font-semibold text-zinc-200 group-hover:text-zinc-50 transition-colors">
+                                <h3 className="font-display font-bold uppercase text-black text-lg">
                                     Problems Solved
                                 </h3>
-                                <p className="text-[11px] text-zinc-500">
+                                <p className="text-xs text-black font-mono font-bold">
                                     All platforms combined
                                 </p>
                             </div>
@@ -434,35 +405,35 @@ export function CompetitiveProgrammingModule({ stats }: CompetitiveProgrammingMo
 
                     {/* Main Stat */}
                     <div className="flex-1">
-                        <div className="flex items-end gap-2 mb-1">
-                            <span className="text-2xl font-bold text-zinc-100 tracking-tight">
+                        <div className="flex items-end gap-2 mb-4">
+                            <span className="text-4xl font-display font-bold text-black tracking-tight">
                                 {totalProblems}
                             </span>
-                            <span className="text-xs text-zinc-500 mb-1.5">
+                            <span className="text-sm text-black mb-2 font-mono font-bold uppercase">
                                 problems
                             </span>
                         </div>
 
                         {/* Platform Breakdown Grid */}
-                        <div className="grid grid-cols-4 gap-2 mb-4">
+                        <div className="grid grid-cols-4 gap-3 mb-6">
                             {platforms.map((p) => (
                                 <div
                                     key={p.key}
-                                    className="p-2.5 text-center bg-zinc-900/40 border border-zinc-800/50 hover:border-zinc-700/50 transition-colors"
+                                    className="p-2 text-center bg-white border-2 border-black shadow-hard-sm hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
                                 >
-                                    <p className="text-lg font-semibold text-zinc-100 tracking-tight">{p.solved}</p>
-                                    <p className="text-[8px] text-zinc-500 uppercase tracking-wider font-medium">{p.name.slice(0, 4)}</p>
+                                    <p className="text-lg font-bold text-black tracking-tight">{p.solved}</p>
+                                    <p className="text-[8px] text-black uppercase tracking-wider font-bold">{p.name.slice(0, 4)}</p>
                                 </div>
                             ))}
                         </div>
 
                         {/* Progress Bar Breakdown */}
                         <div className="mb-4">
-                            <div className="h-1.5 w-full bg-zinc-800/60 overflow-hidden flex">
+                            <div className="h-4 w-full bg-white border-2 border-black overflow-hidden flex shadow-hard-sm">
                                 {platforms.map((p) => (
                                     <div
                                         key={p.key}
-                                        className="h-full transition-all duration-1000 ease-out"
+                                        className="h-full transition-all duration-1000 ease-out border-r border-black last:border-r-0"
                                         style={{
                                             width: `${(p.solved / totalProblems) * 100}%`,
                                             backgroundColor: p.color,
@@ -470,41 +441,31 @@ export function CompetitiveProgrammingModule({ stats }: CompetitiveProgrammingMo
                                     />
                                 ))}
                             </div>
-                            <div className="flex justify-between text-[10px] text-zinc-500 mt-2 font-medium">
+                            <div className="flex justify-between text-[10px] text-black mt-2 font-mono font-bold uppercase">
                                 <span>Platform distribution</span>
                                 <span>{platforms.length} platforms</span>
                             </div>
                         </div>
                     </div>
-
-                    {/* Footer */}
-                    <div className="pt-3 mt-auto border-t border-zinc-800/50 flex items-center justify-between">
-                        <p className="text-[10px] text-zinc-500">
-                            Combined problem-solving progress
-                        </p>
-                        <span className="text-zinc-800 group-hover:text-zinc-500 transition-colors">
-                            ↗
-                        </span>
-                    </div>
                 </div>
 
                 {/* Rating Overview */}
                 <div
-                    className="col-span-4 md:col-span-8 lg:col-span-6 row-span-3 relative overflow-hidden border border-zinc-800 bg-zinc-950/40 p-5 flex flex-col transition-all duration-300 hover:border-zinc-700 group"
+                    className="col-span-4 md:col-span-8 lg:col-span-6 row-span-3 relative overflow-hidden border-4 border-black bg-neo-green p-5 flex flex-col transition-all duration-300 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none shadow-hard group"
                 >
                     {/* Header */}
                     <div className="flex items-start justify-between mb-4">
                         <div className="flex items-center gap-3">
                             <div
-                                className="w-10 h-10 flex items-center justify-center text-xl border border-zinc-800 bg-zinc-900/50"
+                                className="w-10 h-10 flex items-center justify-center text-xl border-2 border-black bg-white shadow-hard-sm"
                             >
                                 📈
                             </div>
                             <div>
-                                <h3 className="font-semibold text-zinc-200 group-hover:text-zinc-50 transition-colors">
+                                <h3 className="font-display font-bold uppercase text-black text-lg">
                                     Rating Overview
                                 </h3>
-                                <p className="text-[11px] text-zinc-500">
+                                <p className="text-xs text-black font-mono font-bold">
                                     Contest performance
                                 </p>
                             </div>
@@ -513,50 +474,39 @@ export function CompetitiveProgrammingModule({ stats }: CompetitiveProgrammingMo
 
                     {/* Main Stat */}
                     <div className="flex-1">
-                        <div className="flex items-end gap-2 mb-1">
-                            <span className="text-2xl font-bold text-zinc-100 tracking-tight">
+                        <div className="flex items-end gap-2 mb-4">
+                            <span className="text-4xl font-display font-bold text-black tracking-tight">
                                 {bestRating}
                             </span>
-                            <span className="text-xs text-zinc-500 mb-1.5">
+                            <span className="text-sm text-black mb-2 font-mono font-bold uppercase">
                                 best rating
                             </span>
                         </div>
 
                         {/* Rating Breakdown Grid */}
-                        <div className="grid grid-cols-3 gap-2 mb-3">
+                        <div className="grid grid-cols-3 gap-3 mb-4">
                             {platforms.filter(p => p.targetRating).map((p) => (
                                 <div
                                     key={p.key}
-                                    className="p-2.5 text-center bg-zinc-900/40 border border-zinc-800/50 hover:border-zinc-700/50 transition-colors"
+                                    className="p-2 text-center bg-white border-2 border-black shadow-hard-sm"
                                 >
-                                    <p className="text-lg font-semibold" style={{ color: p.color }}>{p.rating}</p>
-                                    <p className="text-[8px] text-zinc-500 uppercase tracking-wider font-medium">{p.name.slice(0, 4)}</p>
+                                    <p className="text-lg font-bold" style={{ color: p.color }}>{p.rating}</p>
+                                    <p className="text-[8px] text-black uppercase tracking-wider font-bold">{p.name.slice(0, 4)}</p>
                                 </div>
                             ))}
                         </div>
 
                         {/* Tier Badges */}
-                        <div className="grid grid-cols-3 gap-2 mb-4">
+                        <div className="grid grid-cols-3 gap-3 mb-4">
                             {platforms.filter(p => p.targetRating).map((p) => (
                                 <div
                                     key={p.key}
-                                    className="text-center py-2 border bg-zinc-900/30"
-                                    style={{ borderColor: `${p.tier.color}25`, color: p.tier.color }}
+                                    className="text-center py-2 border-2 border-black bg-white shadow-hard-sm"
                                 >
-                                    <p className="text-[9px] font-semibold uppercase tracking-wider">{p.tier.name}</p>
+                                    <p className="text-[9px] font-bold uppercase tracking-wider text-black">{p.tier.name}</p>
                                 </div>
                             ))}
                         </div>
-                    </div>
-
-                    {/* Footer */}
-                    <div className="pt-3 mt-auto border-t border-zinc-800/50 flex items-center justify-between">
-                        <p className="text-[10px] text-zinc-500">
-                            Target: 1800+ across platforms
-                        </p>
-                        <span className="text-zinc-800 group-hover:text-zinc-500 transition-colors">
-                            ↗
-                        </span>
                     </div>
                 </div>
 

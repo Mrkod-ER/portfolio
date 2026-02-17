@@ -37,44 +37,41 @@ export function Footer() {
     }
 
     return (
-        <footer className="relative mt-20 border-t border-zinc-800">
-            {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/20 to-transparent pointer-events-none" />
-
+        <footer className="relative mt-20 border-t-4 border-black bg-neo-white">
             <div className="relative max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                     {/* Brand Section */}
                     <div className="space-y-4">
-                        <h3 className="font-display text-lg font-bold text-zinc-100">{aboutMe.name}</h3>
-                        <p className="text-sm text-zinc-500 leading-relaxed max-w-xs">
-                            {aboutMe.role}. Building scalable web applications and solving complex problems.
+                        <h3 className="font-display text-2xl font-bold uppercase text-black">{aboutMe.name}</h3>
+                        <p className="text-base text-black font-body leading-relaxed max-w-xs border-l-4 border-neo-yellow pl-4">
+                            {aboutMe.role}. Building scalable web applications with raw power.
                         </p>
                     </div>
 
                     {/* Quick Links */}
                     <div className="space-y-4">
-                        <h4 className="text-sm font-semibold uppercase tracking-wide text-zinc-500">Quick Links</h4>
+                        <h4 className="text-lg font-bold uppercase tracking-tight text-black font-mono">Quick Links</h4>
                         <nav className="flex flex-col gap-2">
-                            <a href="#about" onClick={(e) => handleLinkClick(e, '#about')} className="text-sm text-zinc-500 hover:text-zinc-100 transition-colors">About</a>
-                            <a href="#competitive-programming" onClick={(e) => handleLinkClick(e, '#competitive-programming')} className="text-sm text-zinc-500 hover:text-zinc-100 transition-colors">Competitive Programming</a>
-                            <a href="#projects" onClick={(e) => handleLinkClick(e, '#projects')} className="text-sm text-zinc-500 hover:text-zinc-100 transition-colors">Projects</a>
+                            <a href="#about" onClick={(e) => handleLinkClick(e, '#about')} className="text-base text-black font-bold hover:bg-neo-yellow hover:px-2 transition-all w-max">About</a>
+                            <a href="#competitive-programming" onClick={(e) => handleLinkClick(e, '#competitive-programming')} className="text-base text-black font-bold hover:bg-neo-yellow hover:px-2 transition-all w-max">Competitive Programming</a>
+                            <a href="#projects" onClick={(e) => handleLinkClick(e, '#projects')} className="text-base text-black font-bold hover:bg-neo-yellow hover:px-2 transition-all w-max">Projects</a>
                         </nav>
                     </div>
 
                     {/* Connect Section */}
                     <div className="space-y-4">
-                        <h4 className="text-sm font-semibold uppercase tracking-wide text-zinc-500">Connect</h4>
-                        <div className="flex gap-3">
+                        <h4 className="text-lg font-bold uppercase tracking-tight text-black font-mono">Connect</h4>
+                        <div className="flex gap-4">
                             {socialLinks.map(({ icon: Icon, href, label }) => (
                                 <a
                                     key={label}
                                     href={href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-10 h-10 flex items-center justify-center border border-zinc-800 text-zinc-500 hover:text-zinc-100 hover:border-zinc-700 hover:bg-zinc-900 transition-all duration-200"
+                                    className="w-12 h-12 flex items-center justify-center border-2 border-black bg-white text-black hover:bg-neo-blue hover:text-white hover:shadow-hard shadow-hard-sm transition-all"
                                     title={label}
                                 >
-                                    <Icon size={18} />
+                                    <Icon size={20} />
                                 </a>
                             ))}
                         </div>
@@ -82,23 +79,23 @@ export function Footer() {
                 </div>
 
                 {/* Bottom Section */}
-                <div className="pt-8 border-t border-zinc-800">
+                <div className="pt-8 border-t-4 border-black">
                     <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                         {/* Copyright */}
-                        <p className="text-sm text-zinc-500">
+                        <p className="text-sm text-black font-mono font-bold">
                             © {currentYear} {aboutMe.name}. All rights reserved.
                         </p>
 
                         {/* Built with */}
-                        <div className="flex items-center gap-2 text-sm text-zinc-500">
+                        <div className="flex items-center gap-2 text-sm text-black font-mono font-bold">
                             <span>Built with</span>
-                            <Heart size={14} className="text-red-500 animate-pulse" />
+                            <Heart size={14} className="text-neo-red fill-neo-red animate-pulse" />
                             <span>using</span>
                             <div className="flex gap-1.5">
                                 {techStack.map((tech, idx) => (
                                     <span key={tech}>
-                                        <span className="text-zinc-100 font-medium">{tech}</span>
-                                        {idx < techStack.length - 1 && <span className="text-zinc-600">,</span>}
+                                        <span className="bg-neo-yellow px-1 border border-black text-xs">{tech}</span>
+                                        {idx < techStack.length - 1 && <span>+</span>}
                                     </span>
                                 ))}
                             </div>
