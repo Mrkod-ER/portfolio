@@ -90,7 +90,7 @@ export function Navbar() {
                                 {item.label}
                             </Link>
                         ))}
-                        <ThemeToggle />
+                        {/* <ThemeToggle /> */}
                         <a
                             href="#contact"
                             onClick={(e) => scrollToSection(e, '#contact')}
@@ -102,7 +102,7 @@ export function Navbar() {
 
                     {/* Mobile Menu Button */}
                     <div className="md:hidden flex items-center gap-4">
-                        <ThemeToggle />
+                        {/* <ThemeToggle /> */}
                         <button
                             onClick={() => setIsOpen(!isOpen)}
                             className="p-2 border-2 border-black bg-neo-white shadow-hard active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all"

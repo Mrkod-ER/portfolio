@@ -23,7 +23,6 @@ export interface Project {
   license?: string
   inProgress?: boolean
 }
-
 export const codeforces: CodeProfile = {
   name: 'Codeforces',
   rating: 0,
